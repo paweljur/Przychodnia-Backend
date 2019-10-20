@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NSwag.Annotations;
 using PrzychodniaBackend.Api.Controllers.Dto;
 using PrzychodniaBackend.Api.Entities;
 using PrzychodniaBackend.Api.Repositories.UserRepository;
@@ -46,6 +47,7 @@ namespace PrzychodniaBackend.Api.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        [SwaggerResponse(typeof(void))]
         public async Task<IActionResult> PutUser(long id, User user)
         {
             if (id != user.Id)
@@ -97,7 +99,7 @@ namespace PrzychodniaBackend.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost("auth")]
-        public IActionResult Authenticate([FromBody] LoginCredentialsDto credentials)
+        public ActionResult<User> Authenticate([FromBody] LoginCredentialsDto credentials)
         {
             User? user = _authenticationService.Authenticate(credentials.Username, credentials.Password);
 
