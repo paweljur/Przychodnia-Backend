@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NSwag.Annotations;
 using PrzychodniaBackend.Api.Controllers.Dto;
 using PrzychodniaBackend.Api.Entities;
 using PrzychodniaBackend.Api.Repositories.UserRepository;
@@ -11,43 +11,57 @@ using PrzychodniaBackend.Api.Services;
 
 namespace PrzychodniaBackend.Api.Controllers
 {
+
+    public class MyError
+    {
+        public string Message { get; set; }
+     
+        public MyError(string message)
+        {
+            Message = message;
+        }
+    }
+
     [Route("api/user")]
     [ApiController]
     [Authorize]
     public class UserController : ControllerBase
     {
-        private readonly IAuthenticationService _authenticationService;
+        private readonly IJwtService _jwtService;
         private readonly IUserRepository _userRepository;
 
-        public UserController(IAuthenticationService authenticationService, IUserRepository userRepository)
+        public UserController(IJwtService jwtService, IUserRepository userRepository)
         {
-            _authenticationService = authenticationService;
+            _jwtService = jwtService;
             _userRepository = userRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        [ProducesResponseType(typeof(IEnumerable<User>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetUsers()
         {
-            return new ActionResult<IEnumerable<User>>(await _userRepository.GetAll());
+            return Ok(await _userRepository.GetAll());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetUser(long id)
         {
-            var user = await _userRepository.GetBy(id);
+            User user = await _userRepository.GetBy(id);
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
 
-            return user;
+            return Ok(user);
         }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        [SwaggerResponse(typeof(void))]
+        [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutUser(long id, User user)
         {
             if (id != user.Id)
@@ -74,10 +88,9 @@ namespace PrzychodniaBackend.Api.Controllers
             return NoContent();
         }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [ProducesResponseType(typeof(User), StatusCodes.Status201Created)]
+        public async Task<IActionResult> PostUser(User user)
         {
             await _userRepository.Add(user);
 
@@ -85,7 +98,7 @@ namespace PrzychodniaBackend.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(long id)
+        public async Task<IActionResult> DeleteUser(long id)
         {
             User? deletedUser =  await _userRepository.Delete(id);
 
@@ -94,21 +107,24 @@ namespace PrzychodniaBackend.Api.Controllers
                 return NotFound();
             }
 
-            return deletedUser;
+            return Ok(deletedUser);
         }
 
         [AllowAnonymous]
         [HttpPost("auth")]
-        public ActionResult<User> Authenticate([FromBody] LoginCredentialsDto credentials)
+        [ProducesResponseType(typeof(CurrentUserDto),StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(MyError),StatusCodes.Status400BadRequest)]
+        public IActionResult Authenticate([FromBody] LoginCredentialsDto credentials)
         {
-            User? user = _authenticationService.Authenticate(credentials.Username, credentials.Password);
+            User? user = _userRepository.GetBy(credentials.Username, credentials.Password);
 
-            if(user == null)
+            if(user is null)
             {
-                return BadRequest(new { message = "Username or password is incorrect" });
+                return BadRequest(new MyError("Username or password is incorrect"));
             }
 
-            return Ok(user);
+            string token = _jwtService.GenerateToken(user.Id);
+            return Ok(new CurrentUserDto(user.Role, token, user.Name, user.Surname));
         }
     }
 }

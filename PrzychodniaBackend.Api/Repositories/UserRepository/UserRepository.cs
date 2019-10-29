@@ -13,15 +13,19 @@ namespace PrzychodniaBackend.Api.Repositories.UserRepository
         public UserRepository(ApiContext context)
         {
             _context = context;
-            _context.Users.AddAsync(new User
+            if(!_context.Users.Any())
             {
-                Id = 1,
-                Name = "Admin",
-                Password = "Qwerty1234!",
-                Role = "admin",
-                Surname = "Admin",
-                Username = "admin",
-            });
+                _context.Users.AddAsync(new User
+                (
+                    1,
+                    "admin",
+                    "admin",
+                    "Qwerty1234!",
+                    "Admin",
+                    "Admin"
+                ));
+                _context.SaveChanges();
+            }
             _context.SaveChangesAsync();
         }
 

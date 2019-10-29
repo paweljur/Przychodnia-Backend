@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +27,7 @@ namespace PrzychodniaBackend.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<ApiContext>(options => options.UseInMemoryDatabase("ApiContext"));
+            services.AddDbContext<ApiContext>(options => options.UseSqlServer(Configuration["ConnectionString:PrzychodniaDB"]));
             services.AddControllers();
 
             // configure authentication
@@ -60,7 +59,7 @@ namespace PrzychodniaBackend.Api
 
         private void ConfigureDI(IServiceCollection services)
         {
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IUserRepository, UserRepository>();
         }
 
