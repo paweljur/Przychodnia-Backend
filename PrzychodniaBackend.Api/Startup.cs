@@ -4,13 +4,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using PrzychodniaBackend.Api.Repositories;
 using PrzychodniaBackend.Api.Helpers;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using PrzychodniaBackend.Api.Repositories.UserRepository;
 using PrzychodniaBackend.Api.Services;
+using PrzychodniaBackend.Core.Domain;
+using PrzychodniaBackend.Core.Application;
 
 namespace PrzychodniaBackend.Api
 {
@@ -27,7 +27,7 @@ namespace PrzychodniaBackend.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<ApiContext>(options => options.UseSqlServer(Configuration["ConnectionString:PrzychodniaDB"]));
+            services.AddDbContext<CoreContext>(options => options.UseSqlServer(Configuration["ConnectionString:PrzychodniaDB"], sqlServerOptions => sqlServerOptions.MigrationsAssembly("PrzychodniaBackend.Api")));
             services.AddControllers();
 
             // configure authentication
@@ -60,7 +60,7 @@ namespace PrzychodniaBackend.Api
         private void ConfigureDI(IServiceCollection services)
         {
             services.AddScoped<IJwtService, JwtService>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddCoreDomain();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using PrzychodniaBackend.Api.Entities;
 using PrzychodniaBackend.Api.Helpers;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,11 +8,6 @@ using Microsoft.Extensions.Options;
 
 namespace PrzychodniaBackend.Api.Services
 {
-    public interface IJwtService
-    {
-        string GenerateToken(long userId);
-    }
-
     public class JwtService: IJwtService
     {
         private readonly AppSettings _appSettings;

@@ -1,13 +1,13 @@
-﻿namespace PrzychodniaBackend.Api.Controllers.Dto
+﻿namespace PrzychodniaBackend.Api.Controllers.UserController.Dto
 {
-    public class CurrentUserDto
+    public class AuthenticatedUserDto
     {
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string Role { get; set; }
         public string Token { get; set; }
 
-        public CurrentUserDto(string role, string token, string? name = null, string? surname = null)
+        public AuthenticatedUserDto(string role, string token, string? name = null, string? surname = null)
         {
             Role = role;
             Token = token;

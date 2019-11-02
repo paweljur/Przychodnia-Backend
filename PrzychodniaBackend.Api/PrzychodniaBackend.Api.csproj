@@ -2,9 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -19,6 +16,11 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PrzychodniaBackend.Core.Application\PrzychodniaBackend.Core.Application.csproj" />
+    <ProjectReference Include="..\PrzychodniaBackend.Core.Domain\PrzychodniaBackend.Core.Domain.csproj" />
   </ItemGroup>
 
 </Project>

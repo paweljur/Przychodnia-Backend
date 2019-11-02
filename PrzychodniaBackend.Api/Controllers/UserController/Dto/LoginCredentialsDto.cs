@@ -1,4 +1,4 @@
-﻿namespace PrzychodniaBackend.Api.Controllers.Dto
+﻿namespace PrzychodniaBackend.Api.Controllers.UserController.Dto
 {
     public class LoginCredentialsDto
     {
