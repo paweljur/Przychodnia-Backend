@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrzychodniaBackend.Core.Domain;
 
-namespace PrzychodniaBackend.Api.Migrations.Core
+namespace PrzychodniaBackend.Core.Domain.Migrations
 {
     [DbContext(typeof(CoreContext))]
     partial class CoreContextModelSnapshot : ModelSnapshot
@@ -50,7 +50,7 @@ namespace PrzychodniaBackend.Api.Migrations.Core
                     b.ToTable("IcdCodes");
                 });
 
-            modelBuilder.Entity("PrzychodniaBackend.Core.Domain.Entities.SafeUser", b =>
+            modelBuilder.Entity("PrzychodniaBackend.Core.Domain.Entities.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()

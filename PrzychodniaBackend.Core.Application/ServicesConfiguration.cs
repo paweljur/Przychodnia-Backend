@@ -1,16 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PrzychodniaBackend.Core.Application.UserService;
-using PrzychodniaBackend.Core.Domain.Repositories.UserRepository;
+using PrzychodniaBackend.Core.Domain;
 
 namespace PrzychodniaBackend.Core.Application
 {
     public static class ServicesConfiguration
     {
-        public static void AddCoreDomain(this IServiceCollection services)
+        public static void AddCoreApp(this IServiceCollection services, string connectionString)
         {
             services.AddScoped<IUserService, UserService.UserService>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddCoreDomain(connectionString);
         }
-
     }
 }

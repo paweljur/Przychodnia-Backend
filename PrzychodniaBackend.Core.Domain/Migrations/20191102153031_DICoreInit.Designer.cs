@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrzychodniaBackend.Core.Domain;
 
-namespace PrzychodniaBackend.Api.Migrations.Core
+namespace PrzychodniaBackend.Core.Domain.Migrations
 {
     [DbContext(typeof(CoreContext))]
-    [Migration("20191030230941_CoreInit")]
-    partial class CoreInit
+    [Migration("20191102153031_DICoreInit")]
+    partial class DICoreInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,7 +52,7 @@ namespace PrzychodniaBackend.Api.Migrations.Core
                     b.ToTable("IcdCodes");
                 });
 
-            modelBuilder.Entity("PrzychodniaBackend.Core.Domain.Entities.SafeUser", b =>
+            modelBuilder.Entity("PrzychodniaBackend.Core.Domain.Entities.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()

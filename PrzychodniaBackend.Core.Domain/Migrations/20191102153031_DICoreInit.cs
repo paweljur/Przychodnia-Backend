@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PrzychodniaBackend.Api.Migrations.Core
+namespace PrzychodniaBackend.Core.Domain.Migrations
 {
-    public partial class CoreInit : Migration
+    public partial class DICoreInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
