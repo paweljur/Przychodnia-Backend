@@ -1,4 +1,6 @@
-﻿namespace PrzychodniaBackend.Core.Domain.Entities
+﻿using Microsoft.Extensions.Logging;
+
+namespace PrzychodniaBackend.Core.Domain.Entities
 {
     public class User
     {
