@@ -2,11 +2,11 @@
 
 namespace PrzychodniaBackend.Application.UserService
 {
-    class UserService : IUserService
+    internal class UserService : IUserService
     {
         public LoggedInUser Login(LoginCredentials credentials)
         {
-            return new LoggedInUser{Value = "test"};
+            return new LoggedInUser("name", "surname");
         }
     }
 }
