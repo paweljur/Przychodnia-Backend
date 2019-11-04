@@ -40,7 +40,13 @@ namespace PrzychodniaBackend.Api.Controllers
                 return BadRequest();
             }
 
-            LoggedInUser user = _userService.Login(new LoginCredentials(credentials.Username, credentials.Password));
+            LoggedInUser? user = _userService.Login(new LoginCredentials(credentials.Username, credentials.Password));
+
+            if (user is null)
+            {
+                return BadRequest();
+            }
+
             string token = _jwtService.GenerateToken(user.Id.ToString());
             return Ok(new LoggedInUserDto(user.Id.ToString(), user.Name, user.Surname, token));
         }

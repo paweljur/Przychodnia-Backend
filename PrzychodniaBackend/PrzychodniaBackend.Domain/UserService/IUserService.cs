@@ -4,6 +4,6 @@ namespace PrzychodniaBackend.Application.UserService
 {
     public interface IUserService
     {
-        LoggedInUser Login(LoginCredentials credentials);
+        LoggedInUser? Login(LoginCredentials credentials);
     }
 }
