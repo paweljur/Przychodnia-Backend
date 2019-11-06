@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PrzychodniaBackend.Application.RegistrationService;
 using PrzychodniaBackend.Application.UserService;
 using PrzychodniaBackend.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace PrzychodniaBackend.Application
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService.UserService>();
+            services.AddScoped<IRegistrationService, RegistrationService.RegistrationService>();
             services.AddDatabase();
         }
     }

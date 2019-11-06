@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Api.Controllers.Dto
+namespace PrzychodniaBackend.Api.Controllers.User.Dto
 {
     public class LoginCredentialsDto : ValueObject
     {

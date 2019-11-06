@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
+#nullable disable
 namespace PrzychodniaBackend.EntityFrameworkCore
 {
     internal class AppContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<PatientEntity> Patients { get; set; }
 
         public AppContext(DbContextOptions<AppContext> options) : base(options)
         {

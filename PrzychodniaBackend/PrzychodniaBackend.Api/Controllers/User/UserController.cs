@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Api.Authentication;
-using PrzychodniaBackend.Api.Controllers.Dto;
+using PrzychodniaBackend.Api.Controllers.User.Dto;
 using PrzychodniaBackend.Application.UserService;
 using PrzychodniaBackend.Application.UserService.Dto;
 
-namespace PrzychodniaBackend.Api.Controllers
+namespace PrzychodniaBackend.Api.Controllers.User
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -26,7 +26,7 @@ namespace PrzychodniaBackend.Api.Controllers
         [HttpGet()]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UserInfoDto), StatusCodes.Status200OK)]
         public IActionResult GetAllUsers()
         {
             IEnumerable<UserInfo> users = _userService.GetAllUsers();
@@ -38,21 +38,21 @@ namespace PrzychodniaBackend.Api.Controllers
         [HttpPost()]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         public IActionResult RegisterNewUser(NewUserDto user)
         {
             if (user.Username is null || user.Password is null || user.Role is null)
             {
-                return BadRequest();
+                return BadRequest("No username, password or role");
             }
 
             _userService.RegisterNewUser(new NewUser(user.Username, user.Password, user.Role, user.Name, user.Surname));
-            return Ok();
+            return NoContent();
         }
 
         [HttpPost("login")]
-        [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(LoggedInUserDto), StatusCodes.Status200OK)]
         public IActionResult Login(LoginCredentialsDto credentials)
         {
