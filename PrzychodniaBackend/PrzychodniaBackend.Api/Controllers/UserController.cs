@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Api.Authentication;
@@ -21,12 +23,31 @@ namespace PrzychodniaBackend.Api.Controllers
             _jwtService = jwtService;
         }
 
-        [HttpGet("test")]
+        [HttpGet()]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
-        public IActionResult ConfidentialAction()
+        public IActionResult GetAllUsers()
         {
+            IEnumerable<UserInfo> users = _userService.GetAllUsers();
+
+            return Ok(users.Select(user =>
+                new UserInfoDto(user.Id, user.Username, user.Role, user.Name, user.Surname)));
+        }
+
+        [HttpPost()]
+        [Authorize]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+        public IActionResult RegisterNewUser(NewUserDto user)
+        {
+            if (user.Username is null || user.Password is null || user.Role is null)
+            {
+                return BadRequest();
+            }
+
+            _userService.RegisterNewUser(new NewUser(user.Username, user.Password, user.Role, user.Name, user.Surname));
             return Ok();
         }
 
@@ -37,14 +58,14 @@ namespace PrzychodniaBackend.Api.Controllers
         {
             if (credentials.Username is null || credentials.Password is null)
             {
-                return BadRequest();
+                return BadRequest("No username or password provided");
             }
 
             LoggedInUser? user = _userService.Login(new LoginCredentials(credentials.Username, credentials.Password));
 
             if (user is null)
             {
-                return BadRequest();
+                return BadRequest("Invalid username or password");
             }
 
             string token = _jwtService.GenerateToken(user.Id.ToString());
