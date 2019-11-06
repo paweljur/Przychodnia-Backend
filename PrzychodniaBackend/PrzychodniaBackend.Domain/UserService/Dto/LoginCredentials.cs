@@ -1,6 +1,9 @@
-﻿namespace PrzychodniaBackend.Application.UserService.Dto
+﻿using System.Collections.Generic;
+using PrzychodniaBackend.Shared;
+
+namespace PrzychodniaBackend.Application.UserService.Dto
 {
-    public class LoginCredentials
+    public class LoginCredentials : ValueObject
     {
         public string Username { get; set; }
         public string Password { get; set; }
@@ -9,6 +12,12 @@
         {
             Username = username;
             Password = password;
+        }
+
+        protected override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Username;
+            yield return Password;
         }
     }
 }

@@ -37,14 +37,14 @@ namespace PrzychodniaBackend.Api.Controllers
         {
             if (credentials.Username is null || credentials.Password is null)
             {
-                return BadRequest();
+                return BadRequest("No username or password provided");
             }
 
             LoggedInUser? user = _userService.Login(new LoginCredentials(credentials.Username, credentials.Password));
 
             if (user is null)
             {
-                return BadRequest();
+                return BadRequest("Invalid username or password");
             }
 
             string token = _jwtService.GenerateToken(user.Id.ToString());
