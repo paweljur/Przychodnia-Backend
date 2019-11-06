@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
@@ -26,7 +28,18 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
 
         public User? GetBy(string username, string password)
         {
-            return _context.Users.FirstOrDefault();
+            return _context.Users.SingleOrDefault(user => user.Username == username && user.Password == password);
+        }
+
+        public void Add(string username, string password, string role, string? name, string? surname)
+        {
+            _context.Users.Add(new User(role, username, password, name, surname));
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            return _context.Users.AsNoTracking().ToList();
         }
     }
 }

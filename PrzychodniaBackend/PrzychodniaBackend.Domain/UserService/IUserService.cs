@@ -1,9 +1,12 @@
-﻿using PrzychodniaBackend.Application.UserService.Dto;
+﻿using System.Collections.Generic;
+using PrzychodniaBackend.Application.UserService.Dto;
 
 namespace PrzychodniaBackend.Application.UserService
 {
     public interface IUserService
     {
         LoggedInUser? Login(LoginCredentials credentials);
+        void RegisterNewUser(NewUser newUser);
+        IEnumerable<UserInfo>  GetAllUsers();
     }
 }
