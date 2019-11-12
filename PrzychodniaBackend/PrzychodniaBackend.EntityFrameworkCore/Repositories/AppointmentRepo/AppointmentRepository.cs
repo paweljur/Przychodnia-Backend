@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
@@ -16,6 +19,14 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
         {
             _context.Appointment.Add(new AppointmentEntity(patient, doctor, appointmentDate));
             _context.SaveChanges();
+        }
+
+        public IEnumerable<AppointmentEntity> GetAll()
+        {
+            return _context.Appointment
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .ToList();
         }
     }
 }

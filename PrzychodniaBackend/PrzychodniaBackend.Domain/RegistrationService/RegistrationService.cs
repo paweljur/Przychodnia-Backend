@@ -47,5 +47,10 @@ namespace PrzychodniaBackend.Application.RegistrationService
 
             _appointmentRepository.CreateAppointment(patient, doctor, newAppointment.AppointmentDate);
         }
+
+        public IEnumerable<Appointment> GetAllAppointments()
+        {
+            return _appointmentRepository.GetAll().Select(a => new Appointment(a));
+        }
     }
 }

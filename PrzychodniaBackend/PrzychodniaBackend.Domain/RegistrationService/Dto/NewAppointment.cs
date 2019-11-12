@@ -19,7 +19,9 @@ namespace PrzychodniaBackend.Application.RegistrationService.Dto
 
         protected override IEnumerable<object> GetAtomicValues()
         {
-            throw new System.NotImplementedException();
+            yield return PatientId;
+            yield return DoctorId;
+            yield return AppointmentDate;
         }
     }
 }

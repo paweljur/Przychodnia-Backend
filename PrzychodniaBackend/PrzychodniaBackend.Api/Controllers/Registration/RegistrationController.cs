@@ -20,6 +20,16 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
             _registrationService = registrationService;
         }
 
+        [HttpGet("appointment")]
+        [Authorize]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(IEnumerable<Appointment>), StatusCodes.Status200OK)]
+        public IActionResult GetAllAppointments()
+        {
+            return Ok(_registrationService.GetAllAppointments());
+        }
+
         [HttpPost("appointment")]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
