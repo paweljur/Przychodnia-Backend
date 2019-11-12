@@ -18,7 +18,7 @@ namespace PrzychodniaBackend.Application.RegistrationService.Dto
             AppointmentDate = appointment.AppointmentDate;
         }
 
-        protected override IEnumerable<object> GetAtomicValues()
+        protected override IEnumerable<object?> GetAtomicValues()
         {
             yield return Patient;
             yield return Doctor;

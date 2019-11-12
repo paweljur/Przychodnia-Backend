@@ -20,7 +20,7 @@ namespace PrzychodniaBackend.Api.Controllers.User.Dto
             Name = name;
         }
 
-        protected override IEnumerable<object> GetAtomicValues()
+        protected override IEnumerable<object?> GetAtomicValues()
         {
             yield return Id;
             yield return Username;

@@ -15,7 +15,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
             _context = context;
         }
 
-        public void CreateAppointment(PatientEntity patient, User doctor, DateTimeOffset appointmentDate)
+        public void CreateAppointment(PatientEntity patient, UserEntity doctor, DateTimeOffset appointmentDate)
         {
             _context.Appointment.Add(new AppointmentEntity(patient, doctor, appointmentDate));
             _context.SaveChanges();

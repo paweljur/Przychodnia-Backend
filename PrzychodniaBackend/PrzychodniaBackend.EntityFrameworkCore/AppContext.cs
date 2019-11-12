@@ -6,7 +6,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore
 {
     internal class AppContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
         public DbSet<PatientEntity> Patients { get; set; }
         public DbSet<AppointmentEntity> Appointment { get; set; }
 

@@ -6,7 +6,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
 {
     public interface IAppointmentRepository
     {
-        void CreateAppointment(PatientEntity patient, User doctor, DateTimeOffset appointmentDate);
+        void CreateAppointment(PatientEntity patient, UserEntity doctor, DateTimeOffset appointmentDate);
         IEnumerable<AppointmentEntity> GetAll();
     }
 }

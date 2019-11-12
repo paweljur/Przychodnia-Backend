@@ -16,9 +16,11 @@ namespace PrzychodniaBackend.Application.RegistrationService.Dto
             Name = name;
         }
 
-        protected override IEnumerable<object> GetAtomicValues()
+        protected override IEnumerable<object?> GetAtomicValues()
         {
-            throw new System.NotImplementedException();
+            yield return Id;
+            yield return Name;
+            yield return Surname;
         }
     }
 }

@@ -33,11 +33,10 @@ namespace PrzychodniaBackend.Application.RegistrationService
                 .Select(patient => new Patient(patient.IdentityNumber, patient.Name, patient.Surname));
         }
 
-        // TODO get doctor, get patient and create new patient
         public void MakeAnAppointment(NewAppointment newAppointment)
         {
             PatientEntity? patient = _patientRepository.GetBy(newAppointment.PatientId);
-            User? doctor = _userRepository.GetDoctorBy(newAppointment.DoctorId);
+            UserEntity? doctor = _userRepository.GetDoctorBy(newAppointment.DoctorId);
             
             if (patient is null || doctor is null)
             {

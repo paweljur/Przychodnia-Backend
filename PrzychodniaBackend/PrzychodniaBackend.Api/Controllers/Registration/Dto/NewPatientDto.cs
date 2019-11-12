@@ -9,7 +9,7 @@ namespace PrzychodniaBackend.Api.Controllers.Registration.Dto
         public string? Surname { get; set; }
         public string? IdentityNumber { get; set; }
 
-        protected override IEnumerable<object> GetAtomicValues()
+        protected override IEnumerable<object?> GetAtomicValues()
         {
             yield return Name;
             yield return Surname;

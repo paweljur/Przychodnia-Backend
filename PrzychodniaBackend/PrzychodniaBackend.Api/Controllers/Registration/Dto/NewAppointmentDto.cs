@@ -10,7 +10,7 @@ namespace PrzychodniaBackend.Api.Controllers.Registration.Dto
         public long? DoctorId { get; set; }
         public DateTimeOffset? AppointmentDate { get; set; }
 
-        protected override IEnumerable<object> GetAtomicValues()
+        protected override IEnumerable<object?> GetAtomicValues()
         {
             yield return PatientId;
             yield return DoctorId;

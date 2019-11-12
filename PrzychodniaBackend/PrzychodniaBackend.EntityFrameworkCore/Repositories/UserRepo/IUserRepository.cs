@@ -5,9 +5,9 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
 {
     public interface IUserRepository
     {
-        User? GetBy(string username, string password);
+        UserEntity? GetBy(string username, string password);
         void Add(string username, string password, string role, string? name, string? surname);
-        IEnumerable<User> GetAll();
-        User? GetDoctorBy(long doctorId);
+        IEnumerable<UserEntity> GetAll();
+        UserEntity? GetDoctorBy(long doctorId);
     }
 }

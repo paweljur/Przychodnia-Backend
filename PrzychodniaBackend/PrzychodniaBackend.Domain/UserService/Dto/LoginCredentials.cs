@@ -14,7 +14,7 @@ namespace PrzychodniaBackend.Application.UserService.Dto
             Password = password;
         }
 
-        protected override IEnumerable<object> GetAtomicValues()
+        protected override IEnumerable<object?> GetAtomicValues()
         {
             yield return Username;
             yield return Password;

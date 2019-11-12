@@ -14,7 +14,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
             _context = context;
             if (!_context.Users.Any())
             {
-                _context.Users.AddAsync(new User
+                _context.Users.AddAsync(new UserEntity
                 (
                     "admin",
                     "admin",
@@ -26,23 +26,23 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
             }
         }
 
-        public User? GetBy(string username, string password)
+        public UserEntity? GetBy(string username, string password)
         {
             return _context.Users.SingleOrDefault(user => user.Username == username && user.Password == password);
         }
 
         public void Add(string username, string password, string role, string? name, string? surname)
         {
-            _context.Users.Add(new User(role, username, password, name, surname));
+            _context.Users.Add(new UserEntity(role, username, password, name, surname));
             _context.SaveChanges();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<UserEntity> GetAll()
         {
             return _context.Users.AsNoTracking().ToList();
         }
 
-        public User? GetDoctorBy(long doctorId)
+        public UserEntity? GetDoctorBy(long doctorId)
         {
             return _context.Users.Where(u => u.Role == "doctor").SingleOrDefault(u => u.Id == doctorId);
         }
