@@ -24,5 +24,10 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.PatientRepo
         {
             return _context.Patients.AsNoTracking().ToList();
         }
+
+        public PatientEntity? GetBy(long id)
+        {
+            return _context.Patients.SingleOrDefault(p => p.Id == id);
+        }
     }
 }

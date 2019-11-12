@@ -20,6 +20,22 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
             _registrationService = registrationService;
         }
 
+        [HttpPost("appointment")]
+        [Authorize]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+        public IActionResult MakeAppointment(NewAppointmentDto appointment)
+        {
+            if (appointment.PatientId is null || appointment.AppointmentDate is null || appointment.DoctorId is null)
+            {
+                return BadRequest("Patient, doctor and date are required for an appointment");
+            }
+
+            _registrationService.MakeAnAppointment(new NewAppointment(appointment.PatientId.Value, appointment.DoctorId.Value, appointment.AppointmentDate.Value));
+            return NoContent();
+        }
+
         [HttpGet]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]

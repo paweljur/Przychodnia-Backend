@@ -7,5 +7,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.PatientRepo
     {
         void Add(string identityNumber, string? name, string? surname);
         IEnumerable<PatientEntity> GetAll();
+        PatientEntity? GetBy(long id);
     }
 }
