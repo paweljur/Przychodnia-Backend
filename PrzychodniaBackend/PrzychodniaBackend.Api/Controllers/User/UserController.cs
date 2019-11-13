@@ -69,7 +69,7 @@ namespace PrzychodniaBackend.Api.Controllers.User
             }
 
             string token = _jwtService.GenerateToken(user.Id.ToString());
-            return Ok(new LoggedInUserDto(user.Id.ToString(), user.Name, user.Surname, token));
+            return Ok(new LoggedInUserDto(user.Id.ToString(), user.Name, user.Surname, user.Role, token));
         }
     }
 }

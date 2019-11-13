@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.Shared;
 
 namespace PrzychodniaBackend.Application.UserService.Dto
 {
     public class LoggedInUser : ValueObject
     {
-        public Guid Id { get; private set; }
+        public long Id { get; private set; }
         public string? Name { get; private set; }
         public string? Surname { get; private set; }
+        public string Role { get; private set; }
 
-        public LoggedInUser(string? name, string? surname)
+        internal LoggedInUser(UserEntity user)
         {
-            Id = Guid.Empty;
-            Name = name;
-            Surname = surname;
+            Id = user.Id;
+            Name = user.Name;
+            Surname = user.Surname;
+            Role = user.Role;
         }
 
         protected override IEnumerable<object?> GetAtomicValues()
@@ -22,6 +24,7 @@ namespace PrzychodniaBackend.Application.UserService.Dto
             yield return Id;
             yield return Name;
             yield return Surname;
+            yield return Role;
         }
     }
 }
