@@ -31,10 +31,13 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
             return _context.Users.SingleOrDefault(user => user.Username == username && user.Password == password);
         }
 
-        public void Add(string username, string password, string role, string? name, string? surname)
+        public UserEntity Add(string username, string password, string role, string? name, string? surname)
         {
-            _context.Users.Add(new UserEntity(role, username, password, name, surname));
+            UserEntity newUser = new UserEntity(role, username, password, name, surname);
+            _context.Users.Add(newUser);
             _context.SaveChanges();
+
+            return newUser;
         }
 
         public IEnumerable<UserEntity> GetAll()

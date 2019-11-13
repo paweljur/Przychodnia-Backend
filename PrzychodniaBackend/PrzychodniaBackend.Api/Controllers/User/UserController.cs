@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,46 +25,43 @@ namespace PrzychodniaBackend.Api.Controllers.User
         [HttpGet()]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(typeof(UserInfoDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<UserInfo>), StatusCodes.Status200OK)]
         public IActionResult GetAllUsers()
         {
-            IEnumerable<UserInfo> users = _userService.GetAllUsers();
-
-            return Ok(users.Select(user =>
-                new UserInfoDto(user.Id, user.Username, user.Role, user.Name, user.Surname)));
+            return Ok(_userService.GetAllUsers());
         }
 
         [HttpPost()]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(UserInfo), StatusCodes.Status200OK)]
         public IActionResult RegisterNewUser(NewUserDto user)
         {
             if (user.Username is null || user.Password is null || user.Role is null)
             {
-                return BadRequest("No username, password or role");
+                return BadRequest(new ApiError("No username, password or role"));
             }
 
-            _userService.RegisterNewUser(new NewUser(user.Username, user.Password, user.Role, user.Name, user.Surname));
-            return NoContent();
+            return Ok(_userService.RegisterNewUser(new NewUser(user.Username, user.Password, user.Role, user.Name,
+                user.Surname)));
         }
 
         [HttpPost("login")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(LoggedInUserDto), StatusCodes.Status200OK)]
         public IActionResult Login(LoginCredentialsDto credentials)
         {
             if (credentials.Username is null || credentials.Password is null)
             {
-                return BadRequest("No username or password provided");
+                return BadRequest(new ApiError("No username or password provided"));
             }
 
             LoggedInUser? user = _userService.Login(new LoginCredentials(credentials.Username, credentials.Password));
 
             if (user is null)
             {
-                return BadRequest("Invalid username or password");
+                return BadRequest(new ApiError("Invalid username or password"));
             }
 
             string token = _jwtService.GenerateToken(user.Id.ToString());

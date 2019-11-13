@@ -21,15 +21,14 @@ namespace PrzychodniaBackend.Application.UserService
             return user is { } ? new LoggedInUser(user) : null;
         }
 
-        public void RegisterNewUser(NewUser user)
+        public UserInfo RegisterNewUser(NewUser user)
         {
-            _userRepository.Add(user.Username, user.Password, user.Role, user.Name, user.Surname);
+            return new UserInfo(_userRepository.Add(user.Username, user.Password, user.Role, user.Name, user.Surname));
         }
 
         public IEnumerable<UserInfo> GetAllUsers()
         {
-            return _userRepository.GetAll()
-                .Select(user => new UserInfo(user.Id, user.Username, user.Role, user.Name, user.Surname));
+            return _userRepository.GetAll().Select(user => new UserInfo(user));
         }
     }
 }
