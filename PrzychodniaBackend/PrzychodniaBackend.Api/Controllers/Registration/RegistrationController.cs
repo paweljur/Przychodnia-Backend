@@ -49,14 +49,11 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         [HttpGet]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(typeof(IEnumerable<PatientDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<Patient>), StatusCodes.Status200OK)]
 
         public IActionResult GetAllPatients()
         {
-            IEnumerable<Patient> patients = _registrationService.GetAllPatients();
-
-            return Ok(patients.Select(patient =>
-                new PatientDto(patient.IdentityNumber, patient.Name, patient.Surname)));
+            return Ok(_registrationService.GetAllPatients());
         }
 
         [HttpPost]
