@@ -14,10 +14,13 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.PatientRepo
             _context = context;
         }
 
-        public void Add(string identityNumber, string? name, string? surname)
+        public PatientEntity Add(string identityNumber, string? name, string? surname)
         {
-            _context.Add(new PatientEntity(identityNumber, name, surname));
+            PatientEntity patient = new PatientEntity(identityNumber, name, surname);
+            _context.Add(patient);
             _context.SaveChanges();
+
+            return patient;
         }
 
         public IEnumerable<PatientEntity> GetAll()

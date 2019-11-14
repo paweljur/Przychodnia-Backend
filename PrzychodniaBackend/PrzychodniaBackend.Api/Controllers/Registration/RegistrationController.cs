@@ -59,17 +59,20 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         [HttpPost]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(Patient), StatusCodes.Status200OK)]
         public IActionResult AddNewPatient(NewPatientDto patient)
         {
             if (patient.IdentityNumber is null)
             {
-                return BadRequest("No identity number");
+                return BadRequest(new ApiError("No identity number"));
             }
-            _registrationService.AddNewPatient(new NewPatient(patient.IdentityNumber, patient.Name, patient.Surname));
 
-            return NoContent();
+            Patient createdPatient =
+                _registrationService.AddNewPatient(
+                    new NewPatient(patient.IdentityNumber, patient.Name, patient.Surname));
+
+            return Ok(createdPatient);
         }
     }
 }

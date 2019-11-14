@@ -5,7 +5,7 @@ namespace PrzychodniaBackend.Application.RegistrationService
 {
     public interface IRegistrationService
     {
-        void AddNewPatient(NewPatient patient);
+        Patient AddNewPatient(NewPatient patient);
         IEnumerable<Patient> GetAllPatients();
         void MakeAnAppointment(NewAppointment newAppointment);
         IEnumerable<Appointment> GetAllAppointments();

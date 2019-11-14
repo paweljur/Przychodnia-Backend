@@ -1,20 +1,22 @@
 ﻿using System.Collections.Generic;
+using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.Shared;
 
 namespace PrzychodniaBackend.Application.RegistrationService.Dto
 {
     public class Patient : ValueObject
     {
-        public long Id { get; set; }
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
-        public string IdentityNumber { get; set; }
+        public long Id { get; }
+        public string? Name { get; }
+        public string? Surname { get; }
+        public string IdentityNumber { get; }
 
-        public Patient(string identityNumber, string? name, string? surname)
+        internal Patient(PatientEntity patient)
         {
-            IdentityNumber = identityNumber;
-            Name = name;
-            Surname = surname;
+            Id = patient.Id;
+            Name = patient.Name;
+            Surname = patient.Surname;
+            IdentityNumber = patient.IdentityNumber;
         }
 
         protected override IEnumerable<object?> GetAtomicValues()

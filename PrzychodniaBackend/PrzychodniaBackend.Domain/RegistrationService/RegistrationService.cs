@@ -22,15 +22,14 @@ namespace PrzychodniaBackend.Application.RegistrationService
             _appointmentRepository = appointmentRepository;
         }
 
-        public void AddNewPatient(NewPatient patient)
+        public Patient AddNewPatient(NewPatient patient)
         {
-            _patientRepository.Add(patient.IdentityNumber, patient.Name, patient.Surname);
+            return new Patient(_patientRepository.Add(patient.IdentityNumber, patient.Name, patient.Surname));
         }
 
         public IEnumerable<Patient> GetAllPatients()
         {
-            return _patientRepository.GetAll()
-                .Select(patient => new Patient(patient.IdentityNumber, patient.Name, patient.Surname));
+            return _patientRepository.GetAll().Select(patient => new Patient(patient));
         }
 
         public void MakeAnAppointment(NewAppointment newAppointment)

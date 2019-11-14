@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.Shared;
 
 namespace PrzychodniaBackend.Application.RegistrationService.Dto
@@ -9,11 +10,11 @@ namespace PrzychodniaBackend.Application.RegistrationService.Dto
         public string? Name { get; set; }
         public string? Surname { get; set; }
 
-        public Doctor(long id, string? name, string? surname)
+        internal Doctor(UserEntity user)
         {
-            Id = id;
-            Surname = surname;
-            Name = name;
+            Id = user.Id;
+            Surname = user.Surname;
+            Name = user.Name;
         }
 
         protected override IEnumerable<object?> GetAtomicValues()

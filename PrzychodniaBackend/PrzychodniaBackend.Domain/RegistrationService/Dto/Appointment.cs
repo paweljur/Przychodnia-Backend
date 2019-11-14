@@ -13,8 +13,8 @@ namespace PrzychodniaBackend.Application.RegistrationService.Dto
 
         internal Appointment(AppointmentEntity appointment)
         {
-            Patient = new Patient(appointment.Patient.IdentityNumber, appointment.Patient.Name, appointment.Patient.Surname);
-            Doctor = new Doctor(appointment.Doctor.Id, appointment.Doctor.Name, appointment.Doctor.Surname);
+            Patient = new Patient(appointment.Patient);
+            Doctor = new Doctor(appointment.Doctor);
             AppointmentDate = appointment.AppointmentDate;
         }
 
