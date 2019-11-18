@@ -50,5 +50,10 @@ namespace PrzychodniaBackend.Application.RegistrationService
         {
             return _appointmentRepository.GetAll().Select(a => new Appointment(a));
         }
+
+        public IEnumerable<Doctor> GetAllDoctors()
+        {
+            return _userRepository.GetAllDoctors().Select(user => new Doctor(user));
+        }
     }
 }

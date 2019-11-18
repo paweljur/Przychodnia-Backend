@@ -46,7 +46,7 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
             return NoContent();
         }
 
-        [HttpGet]
+        [HttpGet("patients")]
         [Authorize]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(IEnumerable<Patient>), StatusCodes.Status200OK)]
@@ -54,6 +54,15 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         public IActionResult GetAllPatients()
         {
             return Ok(_registrationService.GetAllPatients());
+        }
+
+        [HttpGet("doctors")]
+        [Authorize]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(IEnumerable<Doctor>), StatusCodes.Status200OK)]
+        public IActionResult GetAllDoctors()
+        {
+            return Ok(_registrationService.GetAllDoctors());
         }
 
         [HttpPost]

@@ -9,5 +9,6 @@ namespace PrzychodniaBackend.Application.RegistrationService
         IEnumerable<Patient> GetAllPatients();
         void MakeAnAppointment(NewAppointment newAppointment);
         IEnumerable<Appointment> GetAllAppointments();
+        IEnumerable<Doctor> GetAllDoctors();
     }
 }

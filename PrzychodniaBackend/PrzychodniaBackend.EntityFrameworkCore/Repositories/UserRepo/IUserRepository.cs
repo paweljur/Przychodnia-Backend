@@ -9,5 +9,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
         UserEntity Add(string username, string password, string role, string? name, string? surname);
         IEnumerable<UserEntity> GetAll();
         UserEntity? GetDoctorBy(long doctorId);
+        IEnumerable<UserEntity> GetAllDoctors();
     }
 }

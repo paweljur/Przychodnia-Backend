@@ -49,5 +49,10 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
         {
             return _context.Users.Where(u => u.Role == "doctor").SingleOrDefault(u => u.Id == doctorId);
         }
+
+        public IEnumerable<UserEntity> GetAllDoctors()
+        {
+            return _context.Users.Where(u => u.Role == "doctor").ToList();
+        }
     }
 }
