@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Api.Controllers.Dto
+namespace PrzychodniaBackend.Api.Controllers.User.Dto
 {
     public class NewUserDto : ValueObject
     {
@@ -10,7 +10,7 @@ namespace PrzychodniaBackend.Api.Controllers.Dto
         public string? Username { get; set; }
         public string? Password { get; set; }
         public string? Role { get; set; }
-        protected override IEnumerable<object> GetAtomicValues()
+        protected override IEnumerable<object?> GetAtomicValues()
         {
             yield return Name;
             yield return Surname;

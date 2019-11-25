@@ -3,7 +3,8 @@ using Moq;
 using NUnit.Framework;
 using PrzychodniaBackend.Api.Authentication;
 using PrzychodniaBackend.Api.Controllers;
-using PrzychodniaBackend.Api.Controllers.Dto;
+using PrzychodniaBackend.Api.Controllers.User;
+using PrzychodniaBackend.Api.Controllers.User.Dto;
 using PrzychodniaBackend.Application.UserService;
 using PrzychodniaBackend.Application.UserService.Dto;
 

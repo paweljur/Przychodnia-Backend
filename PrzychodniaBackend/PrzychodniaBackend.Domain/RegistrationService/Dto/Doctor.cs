@@ -2,32 +2,26 @@
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.UserService.Dto
+namespace PrzychodniaBackend.Application.RegistrationService.Dto
 {
-    public class UserInfo : ValueObject
+    public class Doctor : ValueObject
     {
         public long Id { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
-        public string Username { get; set; }
-        public string Role { get; set; }
 
-        internal UserInfo(UserEntity user)
+        internal Doctor(UserEntity user)
         {
             Id = user.Id;
-            Name = user.Name;
             Surname = user.Surname;
-            Username = user.Username;
-            Role = user.Role;
+            Name = user.Name;
         }
 
         protected override IEnumerable<object?> GetAtomicValues()
         {
             yield return Id;
-            yield return Username;
-            yield return Role;
-            yield return Surname;
             yield return Name;
+            yield return Surname;
         }
     }
 }

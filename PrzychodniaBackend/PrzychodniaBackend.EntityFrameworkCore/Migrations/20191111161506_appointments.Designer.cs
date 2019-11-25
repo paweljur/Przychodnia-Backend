@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrzychodniaBackend.EntityFrameworkCore;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20191111161506_appointments")]
+    partial class appointments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,7 +68,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
                     b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("PrzychodniaBackend.EntityFrameworkCore.Entities.UserEntity", b =>
+            modelBuilder.Entity("PrzychodniaBackend.EntityFrameworkCore.Entities.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,7 +100,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
 
             modelBuilder.Entity("PrzychodniaBackend.EntityFrameworkCore.Entities.AppointmentEntity", b =>
                 {
-                    b.HasOne("PrzychodniaBackend.EntityFrameworkCore.Entities.UserEntity", "Doctor")
+                    b.HasOne("PrzychodniaBackend.EntityFrameworkCore.Entities.User", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)

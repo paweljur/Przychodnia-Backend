@@ -19,9 +19,9 @@ namespace PrzychodniaBackend.Shared
             return !(EqualOperator(left, right));
         }
 
-        protected abstract IEnumerable<object> GetAtomicValues();
+        protected abstract IEnumerable<object?> GetAtomicValues();
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || obj.GetType() != GetType())
             {
@@ -29,8 +29,8 @@ namespace PrzychodniaBackend.Shared
             }
 
             ValueObject other = (ValueObject)obj;
-            IEnumerator<object> thisValues = GetAtomicValues().GetEnumerator();
-            IEnumerator<object> otherValues = other.GetAtomicValues().GetEnumerator();
+            IEnumerator<object?> thisValues = GetAtomicValues().GetEnumerator();
+            IEnumerator<object?> otherValues = other.GetAtomicValues().GetEnumerator();
             while (thisValues.MoveNext() && otherValues.MoveNext())
             {
                 if (ReferenceEquals(thisValues.Current, null) ^

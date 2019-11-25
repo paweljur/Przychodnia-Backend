@@ -62,6 +62,8 @@ namespace PrzychodniaBackend.Api
 
             app.UseRouting();
 
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
             app.UseAuthentication();
             app.UseAuthorization();
 
