@@ -8,5 +8,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
     {
         void CreateAppointment(PatientEntity patient, UserEntity doctor, DateTimeOffset appointmentDate);
         IEnumerable<AppointmentEntity> GetAll();
+        IEnumerable<AppointmentEntity> GetAllByDoctor(long doctorsId);
     }
 }

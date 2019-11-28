@@ -28,5 +28,14 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
                 .Include(a => a.Patient)
                 .ToList();
         }
+
+        public IEnumerable<AppointmentEntity> GetAllByDoctor(long doctorsId)
+        {
+            return _context.Appointment
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .Where(a => a.Doctor.Id == doctorsId)
+                .ToList();
+        }
     }
 }
