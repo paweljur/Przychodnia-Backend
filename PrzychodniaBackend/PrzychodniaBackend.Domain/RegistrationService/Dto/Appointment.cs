@@ -7,12 +7,14 @@ namespace PrzychodniaBackend.Application.RegistrationService.Dto
 {
     public class Appointment : ValueObject
     {
+        public long Id { get; private set; }
         public Patient Patient { get; private set; }
         public Doctor Doctor { get; private set; }
         public DateTimeOffset AppointmentDate { get; private set; }
 
         internal Appointment(AppointmentEntity appointment)
         {
+            Id = appointment.Id;
             Patient = new Patient(appointment.Patient);
             Doctor = new Doctor(appointment.Doctor);
             AppointmentDate = appointment.AppointmentDate;

@@ -2,12 +2,12 @@
 {
     public class UserEntity
     {
-        public long Id { get; private set; }
-        public string? Name { get; private set; }
-        public string? Surname { get; private set; }
-        public string Role { get; private set; }
-        public string Username { get; private set; }
-        public string Password { get; private set; }
+        public long Id { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public string Role { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         internal UserEntity(string role, string username, string password, string? name, string? surname)
         {

@@ -1,19 +1,24 @@
 ﻿using System;
+using System.Security.Claims;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Entities
 {
     public class AppointmentEntity
     {
-        public long Id { get; private set; }
-        public PatientEntity Patient { get; private set; }
-        public UserEntity Doctor { get; private set; }
-        public DateTimeOffset AppointmentDate { get; private set; }
+        public long Id { get; set; }
+        public PatientEntity Patient { get; set; }
+        public UserEntity Doctor { get; set; }
+        public DateTimeOffset AppointmentDate { get; set; }
+        public bool IsCancelled { get; set; }
+        public bool IsAttended { get; set; }
 
         public AppointmentEntity(PatientEntity patient, UserEntity doctor, DateTimeOffset appointmentDate)
         {
             Patient = patient;
             Doctor = doctor;
             AppointmentDate = appointmentDate;
+            IsCancelled = false;
+            IsAttended = false;
         }
 
         #nullable disable

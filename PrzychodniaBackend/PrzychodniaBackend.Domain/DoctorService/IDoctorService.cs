@@ -6,5 +6,6 @@ namespace PrzychodniaBackend.Application.DoctorService
     public interface IDoctorService
     {
         IEnumerable<Appointment> GetDoctorsAppointments(long doctorId);
+        void CancelAppointment(long appointmentId);
     }
 }

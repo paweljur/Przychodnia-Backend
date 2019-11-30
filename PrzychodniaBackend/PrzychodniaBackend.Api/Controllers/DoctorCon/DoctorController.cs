@@ -23,12 +23,21 @@ namespace PrzychodniaBackend.Api.Controllers.DoctorCon
         [HttpGet("appointment")]
         [Authorize(Roles = "admin,doctor")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(IEnumerable<Appointment>), StatusCodes.Status200OK)]
         public IActionResult GetAllAppointments()
         {
             return Ok(_doctorsService.GetDoctorsAppointments(
                 Convert.ToInt64(User.FindFirst(ClaimTypes.NameIdentifier).Value)));
+        }
+
+        [HttpPatch("appointment")]
+        [Authorize(Roles = "admin,doctor")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+        public IActionResult CancelAppointment(long appointmentId)
+        {
+            _doctorsService.CancelAppointment(appointmentId);
+            return NoContent();
         }
     }
 }
