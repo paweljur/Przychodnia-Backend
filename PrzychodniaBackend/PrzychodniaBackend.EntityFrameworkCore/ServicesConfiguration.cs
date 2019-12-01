@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories.PatientRepo;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo;
@@ -13,6 +14,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IVisitRepository, VisitRepository>();
             services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer("Server=localhost;Database=PrzychodniaDB;Trusted_Connection=True;"));
         }

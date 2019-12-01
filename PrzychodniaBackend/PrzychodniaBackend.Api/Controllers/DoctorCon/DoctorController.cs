@@ -20,7 +20,7 @@ namespace PrzychodniaBackend.Api.Controllers.DoctorCon
             _doctorsService = doctorsService;
         }
 
-        [HttpGet("appointment")]
+        [HttpGet("getAllAppointments")]
         [Authorize(Roles = "admin,doctor")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(IEnumerable<Appointment>), StatusCodes.Status200OK)]
@@ -30,13 +30,23 @@ namespace PrzychodniaBackend.Api.Controllers.DoctorCon
                 Convert.ToInt64(User.FindFirst(ClaimTypes.NameIdentifier).Value)));
         }
 
-        [HttpPatch("appointment")]
+        [HttpPatch("cancelAppointment")]
         [Authorize(Roles = "admin,doctor")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         public IActionResult CancelAppointment(long appointmentId)
         {
             _doctorsService.CancelAppointment(appointmentId);
+            return NoContent();
+        }
+
+        [HttpPost("finishAppointment")]
+        [Authorize(Roles = "admin,doctor")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+        public IActionResult FinishAppointment(VisitDetailsDto visitDetails)
+        {
+            _doctorsService.FinishAppointment(new VisitDetails(visitDetails.AppointmentId, visitDetails.Description, visitDetails.Diagnosis));
             return NoContent();
         }
     }
