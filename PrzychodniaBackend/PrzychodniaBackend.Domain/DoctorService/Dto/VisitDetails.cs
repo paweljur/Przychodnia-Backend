@@ -1,4 +1,4 @@
-﻿namespace PrzychodniaBackend.Application.DoctorService
+﻿namespace PrzychodniaBackend.Application.DoctorService.Dto
 {
     public class VisitDetails
     {

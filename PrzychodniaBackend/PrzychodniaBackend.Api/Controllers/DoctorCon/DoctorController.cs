@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Application.DoctorService;
+using PrzychodniaBackend.Application.DoctorService.Dto;
 using PrzychodniaBackend.Application.RegistrationService.Dto;
 
 namespace PrzychodniaBackend.Api.Controllers.DoctorCon
@@ -48,6 +49,15 @@ namespace PrzychodniaBackend.Api.Controllers.DoctorCon
         {
             _doctorsService.FinishAppointment(new VisitDetails(visitDetails.AppointmentId, visitDetails.Description, visitDetails.Diagnosis));
             return NoContent();
+        }
+
+        [HttpGet("getPastVisits")]
+        [Authorize(Roles = "admin,doctor")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(IEnumerable<Visit>), StatusCodes.Status200OK)]
+        public IActionResult GetPastVisits()
+        {
+            return Ok(_doctorsService.GetPastVisits(Convert.ToInt64(User.FindFirst(ClaimTypes.NameIdentifier).Value)));
         }
     }
 }

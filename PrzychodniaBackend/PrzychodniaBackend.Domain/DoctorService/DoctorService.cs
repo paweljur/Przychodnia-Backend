@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PrzychodniaBackend.Application.DoctorService.Dto;
 using PrzychodniaBackend.Application.RegistrationService.Dto;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories;
@@ -23,7 +24,6 @@ namespace PrzychodniaBackend.Application.DoctorService
             return _appointmentRepository.GetAllByDoctor(doctorId).Select(a => new Appointment(a));
         }
 
-        // ToDo null check
         public void CancelAppointment(long appointmentId)
         {
             AppointmentEntity? appointment = _appointmentRepository.GetTracked(appointmentId);
@@ -31,12 +31,16 @@ namespace PrzychodniaBackend.Application.DoctorService
             _appointmentRepository.Save();
         }
 
-        // ToDo null check
         public void FinishAppointment(VisitDetails visitDetails)
         {
             AppointmentEntity? appointment = _appointmentRepository.GetTracked(visitDetails.AppointmentId);
             appointment.IsAttended = true;
             _visitRepository.Add(appointment, visitDetails.Description, visitDetails.Diagnosis);
+        }
+
+        public IEnumerable<Visit> GetPastVisits(long doctorId)
+        {
+            return _visitRepository.GetAllByDoctor(doctorId).Select(v => new Visit(v));
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using PrzychodniaBackend.EntityFrameworkCore.Entities;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 {
@@ -18,6 +21,11 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
             _context.SaveChanges();
 
             return visit;
+        }
+
+        public IEnumerable<VisitEntity> GetAllByDoctor(long doctorId)
+        {
+            return _context.Visits.Include(v => v.Appointment.Patient).Include(v => v.Appointment.Doctor).Where(v => v.Appointment.Doctor.Id == doctorId).ToList();
         }
     }
 }
