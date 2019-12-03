@@ -20,7 +20,7 @@ namespace PrzychodniaBackend.UnitTests.ApiTests
         {
             var userServiceMock = new Mock<IUserService>();
             userServiceMock.Setup(m => m.Login(new LoginCredentials("correctUsername", "correctPassword")))
-                .Returns(new LoggedInUser("correctName", "correctSurname"));
+                .Returns(new LoggedInUser( {Id = 1, Name = "correctName", Role = "admin", Surname = "correctSurname"}));
             var jwtServiceMock = new Mock<IJwtService>();
             _controller = new UserController(userServiceMock.Object, jwtServiceMock.Object);
         }

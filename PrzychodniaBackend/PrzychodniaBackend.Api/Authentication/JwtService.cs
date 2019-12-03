@@ -16,14 +16,15 @@ namespace PrzychodniaBackend.Api.Authentication
             _configuration = configuration;
         }
 
-        public string GenerateToken(string userId)
+        public string GenerateToken(string userId, string role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, userId)
+                    new Claim(ClaimTypes.NameIdentifier, userId),
+                    new Claim(ClaimTypes.Role, role)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(GetKey(_configuration)),

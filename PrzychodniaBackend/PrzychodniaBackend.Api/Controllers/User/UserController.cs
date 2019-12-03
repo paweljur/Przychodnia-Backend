@@ -64,7 +64,7 @@ namespace PrzychodniaBackend.Api.Controllers.User
                 return BadRequest(new ApiError("Invalid username or password"));
             }
 
-            string token = _jwtService.GenerateToken(user.Id.ToString());
+            string token = _jwtService.GenerateToken(user.Id.ToString(), user.Role);
             return Ok(new LoggedInUserDto(user.Id.ToString(), user.Name, user.Surname, user.Role, token));
         }
     }

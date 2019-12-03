@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrzychodniaBackend.EntityFrameworkCore;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20191201183530_CreatedVisitEntity")]
+    partial class CreatedVisitEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,35 +50,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
                     b.HasIndex("PatientId");
 
                     b.ToTable("Appointment");
-                });
-
-            modelBuilder.Entity("PrzychodniaBackend.EntityFrameworkCore.Entities.LabTestOrderEntity", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("DoctorId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("DoctorsNote")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("PatientId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("LabTestOrders");
                 });
 
             modelBuilder.Entity("PrzychodniaBackend.EntityFrameworkCore.Entities.PatientEntity", b =>
@@ -155,21 +128,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
                 });
 
             modelBuilder.Entity("PrzychodniaBackend.EntityFrameworkCore.Entities.AppointmentEntity", b =>
-                {
-                    b.HasOne("PrzychodniaBackend.EntityFrameworkCore.Entities.UserEntity", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PrzychodniaBackend.EntityFrameworkCore.Entities.PatientEntity", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PrzychodniaBackend.EntityFrameworkCore.Entities.LabTestOrderEntity", b =>
                 {
                     b.HasOne("PrzychodniaBackend.EntityFrameworkCore.Entities.UserEntity", "Doctor")
                         .WithMany()

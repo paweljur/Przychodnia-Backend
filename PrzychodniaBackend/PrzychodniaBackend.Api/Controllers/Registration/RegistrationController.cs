@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +20,7 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         }
 
         [HttpGet("appointment")]
-        [Authorize]
+        [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(IEnumerable<Appointment>), StatusCodes.Status200OK)]
@@ -31,7 +30,7 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         }
 
         [HttpPost("appointment")]
-        [Authorize]
+        [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
@@ -47,7 +46,7 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         }
 
         [HttpGet("patients")]
-        [Authorize]
+        [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(IEnumerable<Patient>), StatusCodes.Status200OK)]
 
@@ -57,7 +56,7 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         }
 
         [HttpGet("doctors")]
-        [Authorize]
+        [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(IEnumerable<Doctor>), StatusCodes.Status200OK)]
         public IActionResult GetAllDoctors()
@@ -66,7 +65,7 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Patient), StatusCodes.Status200OK)]

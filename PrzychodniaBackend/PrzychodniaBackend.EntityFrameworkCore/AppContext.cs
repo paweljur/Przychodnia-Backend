@@ -9,6 +9,8 @@ namespace PrzychodniaBackend.EntityFrameworkCore
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<PatientEntity> Patients { get; set; }
         public DbSet<AppointmentEntity> Appointment { get; set; }
+        public DbSet<VisitEntity> Visits { get; set; }
+        public DbSet<LabTestOrderEntity> LabTestOrders { get; set; }
 
         public AppContext(DbContextOptions<AppContext> options) : base(options)
         {
