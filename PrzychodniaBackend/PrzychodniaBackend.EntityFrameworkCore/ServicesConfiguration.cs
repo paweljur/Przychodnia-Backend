@@ -15,6 +15,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IVisitRepository, VisitRepository>();
+            services.AddScoped<ILabTestOrderRepository, LabTestOrderRepository>();
             services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer("Server=localhost;Database=PrzychodniaDB;Trusted_Connection=True;"));
         }

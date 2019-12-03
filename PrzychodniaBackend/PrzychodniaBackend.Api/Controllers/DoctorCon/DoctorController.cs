@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -47,7 +48,9 @@ namespace PrzychodniaBackend.Api.Controllers.DoctorCon
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         public IActionResult FinishAppointment(VisitDetailsDto visitDetails)
         {
-            _doctorsService.FinishAppointment(new VisitDetails(visitDetails.AppointmentId, visitDetails.Description, visitDetails.Diagnosis));
+            _doctorsService.FinishAppointment(new VisitDetails(visitDetails.AppointmentId, visitDetails.Description,
+                visitDetails.Diagnosis,
+                visitDetails.LabTestOrders.Select(o => new LabTestOrder(o.Name, o.DoctorsNote))));
             return NoContent();
         }
 

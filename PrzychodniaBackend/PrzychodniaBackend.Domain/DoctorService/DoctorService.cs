@@ -12,11 +12,13 @@ namespace PrzychodniaBackend.Application.DoctorService
     {
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IVisitRepository _visitRepository;
+        private readonly ILabTestOrderRepository _labTestOrderRepository;
 
-        public DoctorService(IAppointmentRepository appointmentRepository, IVisitRepository visitRepository)
+        public DoctorService(IAppointmentRepository appointmentRepository, IVisitRepository visitRepository, ILabTestOrderRepository labTestOrderRepository)
         {
             _appointmentRepository = appointmentRepository;
             _visitRepository = visitRepository;
+            _labTestOrderRepository = labTestOrderRepository;
         }
 
         public IEnumerable<Appointment> GetDoctorsAppointments(long doctorId)
@@ -36,6 +38,8 @@ namespace PrzychodniaBackend.Application.DoctorService
             AppointmentEntity? appointment = _appointmentRepository.GetTracked(visitDetails.AppointmentId);
             appointment.IsAttended = true;
             _visitRepository.Add(appointment, visitDetails.Description, visitDetails.Diagnosis);
+            _labTestOrderRepository.Add(visitDetails.LabTestOrders.Select(o =>
+                new LabTestOrderEntity(o.Name, o.DoctorsNote, appointment.Patient, appointment.Doctor)));
         }
 
         public IEnumerable<Visit> GetPastVisits(long doctorId)

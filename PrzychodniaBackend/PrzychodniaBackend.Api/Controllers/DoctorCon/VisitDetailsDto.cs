@@ -1,9 +1,13 @@
-﻿namespace PrzychodniaBackend.Api.Controllers.DoctorCon
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace PrzychodniaBackend.Api.Controllers.DoctorCon
 {
     public class VisitDetailsDto
     {
         public long AppointmentId { get; set; }
         public string? Description { get; set; }
         public string? Diagnosis { get; set; }
+        public IEnumerable<LabTestOrderDto> LabTestOrders { get; set; }
     }
 }

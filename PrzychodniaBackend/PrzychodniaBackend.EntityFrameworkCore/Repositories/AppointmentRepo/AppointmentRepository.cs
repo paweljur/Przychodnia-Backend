@@ -44,7 +44,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
 
         public AppointmentEntity? GetTracked(long appointmentId)
         {
-            return _context.Appointment.SingleOrDefault(a => a.Id == appointmentId);
+            return _context.Appointment.Include(a => a.Doctor).Include(a => a.Patient).SingleOrDefault(a => a.Id == appointmentId);
         }
 
         public void Save()
