@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +42,17 @@ namespace PrzychodniaBackend.Api.Controllers
         [ProducesResponseType(typeof(LabTestResult), StatusCodes.Status200OK)]
         public IActionResult FinishLabTest(LabTestResultDto result)
         {
-            return Ok(_laboratoryService.FinishLabTest(new LabTestResultParams(result.LabTestOrderId, result.Description)));
+            return Ok(_laboratoryService.FinishLabTest(new LabTestResultParams(result.LabTestOrderId,
+                result.Description, Convert.ToInt64(User.FindFirst(ClaimTypes.NameIdentifier).Value))));
+        }
+        
+        [HttpPost("getAllLabResult")]
+        [Authorize(Roles = "admin,laborant")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(IEnumerable<LabTestResult>), StatusCodes.Status200OK)]
+        public IActionResult GetAllLabResult()
+        {
+            return Ok(_laboratoryService.GetAllLabResults());
         }
     }
 }

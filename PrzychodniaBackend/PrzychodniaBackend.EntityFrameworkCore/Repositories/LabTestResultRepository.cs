@@ -1,4 +1,7 @@
-﻿using PrzychodniaBackend.EntityFrameworkCore.Entities;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 {
@@ -15,6 +18,11 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
         {
             _context.LabTestResults.Add(labTestResultEntity);
             _context.SaveChanges();
+        }
+
+        public IEnumerable<LabTestResultEntity> GetAll()
+        {
+            return _context.LabTestResults.Include(r => r.LabTestOrder.Patient).Include(r => r.Laborant).ToList();
         }
     }
 }

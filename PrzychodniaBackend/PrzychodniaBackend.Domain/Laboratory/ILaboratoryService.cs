@@ -7,5 +7,6 @@ namespace PrzychodniaBackend.Application.Laboratory
         IEnumerable<LabTestOrder> GetAllLabTestOrders();
         LabTestOrder GetLabTestOrder(long id);
         LabTestResult FinishLabTest(LabTestResultParams labTestResultParams);
+        IEnumerable<LabTestResult> GetAllLabResults();
     }
 }
