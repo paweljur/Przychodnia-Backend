@@ -42,7 +42,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
 
         public IEnumerable<UserEntity> GetAll()
         {
-            return _context.Users.AsNoTracking().ToList();
+            return _context.Users.ToList();
         }
 
         public UserEntity? GetDoctorBy(long doctorId)

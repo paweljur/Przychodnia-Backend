@@ -7,5 +7,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
     {
         void Add(IEnumerable<LabTestOrderEntity> labTestOrders);
         IEnumerable<LabTestOrderEntity> GetAll();
+        LabTestOrderEntity Get(long id);
     }
 }

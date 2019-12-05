@@ -25,7 +25,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.PatientRepo
 
         public IEnumerable<PatientEntity> GetAll()
         {
-            return _context.Patients.AsNoTracking().ToList();
+            return _context.Patients.ToList();
         }
 
         public PatientEntity? GetBy(long id)

@@ -28,14 +28,14 @@ namespace PrzychodniaBackend.Application.DoctorService
 
         public void CancelAppointment(long appointmentId)
         {
-            AppointmentEntity? appointment = _appointmentRepository.GetTracked(appointmentId);
+            AppointmentEntity? appointment = _appointmentRepository.Get(appointmentId);
             appointment.IsCancelled = true;
             _appointmentRepository.Save();
         }
 
         public void FinishAppointment(VisitDetails visitDetails)
         {
-            AppointmentEntity? appointment = _appointmentRepository.GetTracked(visitDetails.AppointmentId);
+            AppointmentEntity? appointment = _appointmentRepository.Get(visitDetails.AppointmentId);
             appointment.IsAttended = true;
             _visitRepository.Add(appointment, visitDetails.Description, visitDetails.Diagnosis);
             _labTestOrderRepository.Add(visitDetails.LabTestOrders.Select(o =>

@@ -16,13 +16,31 @@ namespace PrzychodniaBackend.Api.Controllers
             _laboratoryService = laboratoryService;
         }
 
-        [HttpGet("GetAllLabTestOrders")]
+        [HttpGet("getAllLabTestOrders")]
         [Authorize(Roles = "admin,laborant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(IEnumerable<LabTestOrder>), StatusCodes.Status200OK)]
         public IActionResult GetAllLabTestOrders()
         {
             return Ok(_laboratoryService.GetAllLabTestOrders());
+        }
+
+        [HttpGet("getLabTestOrder")]
+        [Authorize(Roles = "admin,laborant")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(LabTestOrder), StatusCodes.Status200OK)]
+        public IActionResult GetLabTestOrder(long id)
+        {
+            return Ok(_laboratoryService.GetLabTestOrder(id));
+        }
+
+        [HttpPost("finishLabTest")]
+        [Authorize(Roles = "admin,laborant")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(LabTestResult), StatusCodes.Status200OK)]
+        public IActionResult FinishLabTest(LabTestResultDto result)
+        {
+            return Ok(_laboratoryService.FinishLabTest(new LabTestResultParams(result.LabTestOrderId, result.Description)));
         }
     }
 }

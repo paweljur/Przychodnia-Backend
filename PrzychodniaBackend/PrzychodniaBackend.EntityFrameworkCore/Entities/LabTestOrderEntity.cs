@@ -7,6 +7,7 @@
         public string? DoctorsNote { get; set; }
         public PatientEntity Patient { get; set; }
         public UserEntity Doctor { get; set; }
+        public bool IsExecuted { get; set; }
 
         public LabTestOrderEntity(string name, string? doctorsNote, PatientEntity patient, UserEntity doctor)
         {
@@ -14,6 +15,7 @@
             DoctorsNote = doctorsNote;
             Patient = patient;
             Doctor = doctor;
+            IsExecuted = false;
         }
 
         private LabTestOrderEntity(string name, string? doctorsNote)

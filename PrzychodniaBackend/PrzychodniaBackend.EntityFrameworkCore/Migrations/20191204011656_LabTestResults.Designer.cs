@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrzychodniaBackend.EntityFrameworkCore;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20191204011656_LabTestResults")]
+    partial class LabTestResults
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +65,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
                     b.Property<string>("DoctorsNote")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsExecuted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -99,7 +98,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
 
                     b.HasIndex("LabTestOrderId");
 
-                    b.ToTable("LabTestResults");
+                    b.ToTable("LabTestResult");
                 });
 
             modelBuilder.Entity("PrzychodniaBackend.EntityFrameworkCore.Entities.PatientEntity", b =>
