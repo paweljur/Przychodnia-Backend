@@ -24,5 +24,10 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
         {
             return _context.LabTestResults.Include(r => r.LabTestOrder.Patient).Include(r => r.Laborant).ToList();
         }
+
+        public IEnumerable<LabTestResultEntity> GetAllByPatient(long patientId)
+        {
+            return _context.LabTestResults.Include(r => r.Laborant).Include(r => r.LabTestOrder.Patient).Include(r => r.LabTestOrder.Doctor).Where(r => r.LabTestOrder.Patient.Id == patientId).ToList();
+        }
     }
 }

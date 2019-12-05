@@ -7,5 +7,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
     {
         void Add(LabTestResultEntity labTestResultEntity);
         IEnumerable<LabTestResultEntity> GetAll();
+        IEnumerable<LabTestResultEntity> GetAllByPatient(long patientId);
     }
 }

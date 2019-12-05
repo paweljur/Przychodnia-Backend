@@ -62,5 +62,14 @@ namespace PrzychodniaBackend.Api.Controllers.DoctorCon
         {
             return Ok(_doctorsService.GetPastVisits(Convert.ToInt64(User.FindFirst(ClaimTypes.NameIdentifier).Value)));
         }
+
+        [HttpGet("getPatientHistory")]
+        [Authorize(Roles = "admin,doctor")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(PatientHistory), StatusCodes.Status200OK)]
+        public IActionResult GetPatientHistory(long patientId)
+        {
+            return Ok(_doctorsService.GetPatientHistory(patientId));
+        }
     }
 }
