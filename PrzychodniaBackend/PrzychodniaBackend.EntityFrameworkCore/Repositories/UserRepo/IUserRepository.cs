@@ -10,5 +10,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
         IEnumerable<UserEntity> GetAll();
         UserEntity? GetDoctorBy(long doctorId);
         IEnumerable<UserEntity> GetAllDoctors();
+        UserEntity GetLaborantBy(long laborantId);
     }
 }

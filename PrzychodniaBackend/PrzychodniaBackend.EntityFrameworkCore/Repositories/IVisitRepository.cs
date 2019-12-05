@@ -7,5 +7,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
     {
         VisitEntity Add(AppointmentEntity appointment, string? description, string? diagnosis);
         IEnumerable<VisitEntity> GetAllByDoctor(long doctorId);
+        IEnumerable<VisitEntity> GetAllByPatient(long patientId);
     }
 }

@@ -22,7 +22,6 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         [HttpGet("appointment")]
         [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(IEnumerable<Appointment>), StatusCodes.Status200OK)]
         public IActionResult GetAllAppointments()
         {

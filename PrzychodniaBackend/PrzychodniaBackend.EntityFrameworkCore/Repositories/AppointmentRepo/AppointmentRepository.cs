@@ -26,7 +26,6 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
             return _context.Appointment
                 .Include(a => a.Doctor)
                 .Include(a => a.Patient)
-                .AsNoTracking()
                 .ToList();
         }
 
@@ -38,11 +37,10 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
                 .Where(a => a.Doctor.Id == doctorsId)
                 .Where(a => !a.IsCancelled)
                 .Where(a => !a.IsAttended)
-                .AsNoTracking()
                 .ToList();
         }
 
-        public AppointmentEntity? GetTracked(long appointmentId)
+        public AppointmentEntity? Get(long appointmentId)
         {
             return _context.Appointment.Include(a => a.Doctor).Include(a => a.Patient).SingleOrDefault(a => a.Id == appointmentId);
         }

@@ -27,5 +27,10 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
         {
             return _context.Visits.Include(v => v.Appointment.Patient).Include(v => v.Appointment.Doctor).Where(v => v.Appointment.Doctor.Id == doctorId).ToList();
         }
+
+        public IEnumerable<VisitEntity> GetAllByPatient(long patientId)
+        {
+            return _context.Visits.Include(v => v.Appointment.Doctor).Include(v => v.Appointment.Patient).Where(v => v.Appointment.Patient.Id == patientId).ToList();
+        }
     }
 }

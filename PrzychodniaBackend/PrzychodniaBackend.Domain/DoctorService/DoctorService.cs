@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using PrzychodniaBackend.Application.DoctorService.Dto;
+using PrzychodniaBackend.Application.Laboratory;
 using PrzychodniaBackend.Application.RegistrationService.Dto;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories;
@@ -13,12 +14,14 @@ namespace PrzychodniaBackend.Application.DoctorService
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IVisitRepository _visitRepository;
         private readonly ILabTestOrderRepository _labTestOrderRepository;
+        private readonly ILabTestResultRepository _labTestResultRepository;
 
-        public DoctorService(IAppointmentRepository appointmentRepository, IVisitRepository visitRepository, ILabTestOrderRepository labTestOrderRepository)
+        public DoctorService(IAppointmentRepository appointmentRepository, IVisitRepository visitRepository, ILabTestOrderRepository labTestOrderRepository, ILabTestResultRepository labTestResultRepository)
         {
             _appointmentRepository = appointmentRepository;
             _visitRepository = visitRepository;
             _labTestOrderRepository = labTestOrderRepository;
+            _labTestResultRepository = labTestResultRepository;
         }
 
         public IEnumerable<Appointment> GetDoctorsAppointments(long doctorId)
@@ -28,14 +31,14 @@ namespace PrzychodniaBackend.Application.DoctorService
 
         public void CancelAppointment(long appointmentId)
         {
-            AppointmentEntity? appointment = _appointmentRepository.GetTracked(appointmentId);
+            AppointmentEntity? appointment = _appointmentRepository.Get(appointmentId);
             appointment.IsCancelled = true;
             _appointmentRepository.Save();
         }
 
         public void FinishAppointment(VisitDetails visitDetails)
         {
-            AppointmentEntity? appointment = _appointmentRepository.GetTracked(visitDetails.AppointmentId);
+            AppointmentEntity? appointment = _appointmentRepository.Get(visitDetails.AppointmentId);
             appointment.IsAttended = true;
             _visitRepository.Add(appointment, visitDetails.Description, visitDetails.Diagnosis);
             _labTestOrderRepository.Add(visitDetails.LabTestOrders.Select(o =>
@@ -45,6 +48,14 @@ namespace PrzychodniaBackend.Application.DoctorService
         public IEnumerable<Visit> GetPastVisits(long doctorId)
         {
             return _visitRepository.GetAllByDoctor(doctorId).Select(v => new Visit(v));
+        }
+
+        public PatientHistory GetPatientHistory(long patientId)
+        {
+            IEnumerable<Visit> visits = _visitRepository.GetAllByPatient(patientId).Select(v => new Visit(v));
+            IEnumerable<LabTestResult> testResults = _labTestResultRepository.GetAllByPatient(patientId).Select(r => new LabTestResult(r));
+
+            return new PatientHistory(visits, testResults);
         }
     }
 }

@@ -10,5 +10,6 @@ namespace PrzychodniaBackend.Application.DoctorService
         void CancelAppointment(long appointmentId);
         void FinishAppointment(VisitDetails visitDetails);
         IEnumerable<Visit> GetPastVisits(long doctorId);
+        PatientHistory GetPatientHistory(long patientId);
     }
 }

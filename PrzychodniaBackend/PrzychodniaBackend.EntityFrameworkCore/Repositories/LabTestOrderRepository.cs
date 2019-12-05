@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
@@ -16,6 +18,21 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
         {
             _context.LabTestOrders.AddRange(labTestOrders);
             _context.SaveChanges();
+        }
+
+        public IEnumerable<LabTestOrderEntity> GetAll()
+        {
+            return _context.LabTestOrders.Include(o => o.Doctor)
+                .Include(o => o.Patient)
+                .Where(o => !o.IsExecuted)
+                .ToList();
+        }
+
+        public LabTestOrderEntity Get(long id)
+        {
+            return _context.LabTestOrders.Include(o => o.Patient)
+                .Include(o => o.Doctor)
+                .SingleOrDefault(o => o.Id == id);
         }
     }
 }

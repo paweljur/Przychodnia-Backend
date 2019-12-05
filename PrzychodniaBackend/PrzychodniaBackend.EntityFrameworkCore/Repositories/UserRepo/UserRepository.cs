@@ -42,7 +42,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
 
         public IEnumerable<UserEntity> GetAll()
         {
-            return _context.Users.AsNoTracking().ToList();
+            return _context.Users.ToList();
         }
 
         public UserEntity? GetDoctorBy(long doctorId)
@@ -53,6 +53,11 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
         public IEnumerable<UserEntity> GetAllDoctors()
         {
             return _context.Users.Where(u => u.Role == "doctor").ToList();
+        }
+
+        public UserEntity GetLaborantBy(long laborantId)
+        {
+            return _context.Users.Where(u => u.Role == "laborant").SingleOrDefault(u => u.Id == laborantId);
         }
     }
 }
