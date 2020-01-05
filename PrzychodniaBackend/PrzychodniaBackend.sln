@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrzychodniaBackend.Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrzychodniaBackend.EntityFrameworkCore", "PrzychodniaBackend.EntityFrameworkCore\PrzychodniaBackend.EntityFrameworkCore.csproj", "{20713408-C56B-4B9F-B49F-F440B53B7C53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrzychodniaBackend.UnitTests", "PrzychodniaBackend.UnitTests\PrzychodniaBackend.UnitTests.csproj", "{338CEF4A-C953-4579-A367-0C2F12EAF3E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrzychodniaBackend.Shared", "PrzychodniaBackend.Shared\PrzychodniaBackend.Shared.csproj", "{AF9B7F2D-3CB2-4921-9F3B-B0B77AB7DF37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrzychodniaBackend.Shared", "PrzychodniaBackend.Shared\PrzychodniaBackend.Shared.csproj", "{AF9B7F2D-3CB2-4921-9F3B-B0B77AB7DF37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{20713408-C56B-4B9F-B49F-F440B53B7C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20713408-C56B-4B9F-B49F-F440B53B7C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20713408-C56B-4B9F-B49F-F440B53B7C53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{338CEF4A-C953-4579-A367-0C2F12EAF3E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{338CEF4A-C953-4579-A367-0C2F12EAF3E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{338CEF4A-C953-4579-A367-0C2F12EAF3E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{338CEF4A-C953-4579-A367-0C2F12EAF3E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF9B7F2D-3CB2-4921-9F3B-B0B77AB7DF37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF9B7F2D-3CB2-4921-9F3B-B0B77AB7DF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF9B7F2D-3CB2-4921-9F3B-B0B77AB7DF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
