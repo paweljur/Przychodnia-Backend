@@ -4,7 +4,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PrzychodniaBackend.Application.Laboratory;
+using PrzychodniaBackend.Api.Controllers.LaboratoryControllerDtos;
+using PrzychodniaBackend.Application.LaboratoryService;
+using PrzychodniaBackend.Application.LaboratoryService.Dto;
 
 namespace PrzychodniaBackend.Api.Controllers
 {
@@ -45,7 +47,7 @@ namespace PrzychodniaBackend.Api.Controllers
             return Ok(_laboratoryService.FinishLabTest(new LabTestResultParams(result.LabTestOrderId,
                 result.Description, Convert.ToInt64(User.FindFirst(ClaimTypes.NameIdentifier).Value))));
         }
-        
+
         [HttpPost("getAllLabResult")]
         [Authorize(Roles = "admin,laborant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]

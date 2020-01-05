@@ -16,7 +16,7 @@ namespace PrzychodniaBackend.Shared
 
         protected static bool NotEqualOperator(ValueObject left, ValueObject right)
         {
-            return !(EqualOperator(left, right));
+            return !EqualOperator(left, right);
         }
 
         protected abstract IEnumerable<object?> GetAtomicValues();
@@ -54,6 +54,7 @@ namespace PrzychodniaBackend.Shared
                 .Select(x => x != null ? x.GetHashCode() : 0)
                 .Aggregate((x, y) => x ^ y);
         }
+
         // Other utility methods
     }
 }

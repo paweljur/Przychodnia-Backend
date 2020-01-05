@@ -25,7 +25,7 @@ namespace PrzychodniaBackend.Api
             services.AddControllers();
 
             services.AddSwaggerDocument();
-            
+
             services.AddCors();
 
             services.AddScoped<IJwtService, JwtService>();

@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PrzychodniaBackend.Domain\PrzychodniaBackend.Application.csproj" />
+    <ProjectReference Include="..\PrzychodniaBackend.Application\PrzychodniaBackend.Application.csproj" />
     <ProjectReference Include="..\PrzychodniaBackend.Shared\PrzychodniaBackend.Shared.csproj" />
   </ItemGroup>
 

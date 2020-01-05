@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories.PatientRepo;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.EntityFrameworkCore
 {
