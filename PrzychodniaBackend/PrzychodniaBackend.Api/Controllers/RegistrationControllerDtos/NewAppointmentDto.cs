@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Api.Controllers.Registration.Dto
+namespace PrzychodniaBackend.Api.Controllers.RegistrationControllerDtos
 {
     public class NewAppointmentDto : ValueObject
     {

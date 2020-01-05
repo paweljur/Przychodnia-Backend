@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Api.Authentication;
-using PrzychodniaBackend.Api.Controllers.User.Dto;
+using PrzychodniaBackend.Api.Controllers.UserControllerDtos;
 using PrzychodniaBackend.Application.UserService;
 using PrzychodniaBackend.Application.UserService.Dto;
 
-namespace PrzychodniaBackend.Api.Controllers.User
+namespace PrzychodniaBackend.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -5,11 +5,12 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PrzychodniaBackend.Api.Controllers.DoctorControllerDtos;
 using PrzychodniaBackend.Application.DoctorService;
 using PrzychodniaBackend.Application.DoctorService.Dto;
 using PrzychodniaBackend.Application.RegistrationService.Dto;
 
-namespace PrzychodniaBackend.Api.Controllers.DoctorCon
+namespace PrzychodniaBackend.Api.Controllers
 {
     [Route("api/doctor")]
     [ApiController]

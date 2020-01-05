@@ -1,4 +1,4 @@
-﻿namespace PrzychodniaBackend.Api.Controllers
+﻿namespace PrzychodniaBackend.Api.Controllers.LaboratoryControllerDtos
 {
     public class LabTestResultDto
     {

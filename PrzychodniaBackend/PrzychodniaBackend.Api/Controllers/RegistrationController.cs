@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PrzychodniaBackend.Api.Controllers.Registration.Dto;
+using PrzychodniaBackend.Api.Controllers.RegistrationControllerDtos;
 using PrzychodniaBackend.Application.RegistrationService;
 using PrzychodniaBackend.Application.RegistrationService.Dto;
 
-namespace PrzychodniaBackend.Api.Controllers.Registration
+namespace PrzychodniaBackend.Api.Controllers
 {
     [Route("api/registration")]
     [ApiController]
@@ -40,7 +40,8 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
                 return BadRequest("Patient, doctor and date are required for an appointment");
             }
 
-            _registrationService.MakeAnAppointment(new NewAppointment(appointment.PatientId.Value, appointment.DoctorId.Value, appointment.AppointmentDate.Value));
+            _registrationService.MakeAnAppointment(new NewAppointment(appointment.PatientId.Value,
+                appointment.DoctorId.Value, appointment.AppointmentDate.Value));
             return NoContent();
         }
 
@@ -48,7 +49,6 @@ namespace PrzychodniaBackend.Api.Controllers.Registration
         [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(IEnumerable<Patient>), StatusCodes.Status200OK)]
-
         public IActionResult GetAllPatients()
         {
             return Ok(_registrationService.GetAllPatients());
