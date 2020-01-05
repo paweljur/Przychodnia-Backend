@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrzychodniaBackend.Api", "PrzychodniaBackend.Api\PrzychodniaBackend.Api.csproj", "{7DB61C83-E3BB-4E07-B1EE-50EDC3CFFFA2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrzychodniaBackend.Application", "PrzychodniaBackend.Domain\PrzychodniaBackend.Application.csproj", "{4909A73F-4ACE-4CDC-A344-F01DC09073BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrzychodniaBackend.Application", "PrzychodniaBackend.Application\PrzychodniaBackend.Application.csproj", "{4909A73F-4ACE-4CDC-A344-F01DC09073BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrzychodniaBackend.EntityFrameworkCore", "PrzychodniaBackend.EntityFrameworkCore\PrzychodniaBackend.EntityFrameworkCore.csproj", "{20713408-C56B-4B9F-B49F-F440B53B7C53}"
 EndProject
