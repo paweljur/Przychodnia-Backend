@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
-namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
+namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces
 {
     public interface IAppointmentRepository
     {

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
-namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
+namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 {
     internal class AppointmentRepository : IAppointmentRepository
     {
@@ -42,7 +43,8 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo
 
         public AppointmentEntity? Get(long appointmentId)
         {
-            return _context.Appointment.Include(a => a.Doctor).Include(a => a.Patient).SingleOrDefault(a => a.Id == appointmentId);
+            return _context.Appointment.Include(a => a.Doctor).Include(a => a.Patient)
+                .SingleOrDefault(a => a.Id == appointmentId);
         }
 
         public void Save()

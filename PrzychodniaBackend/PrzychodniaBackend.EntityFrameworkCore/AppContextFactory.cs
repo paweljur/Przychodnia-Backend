@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace PrzychodniaBackend.EntityFrameworkCore
 {
-    class CoreContextFactory : IDesignTimeDbContextFactory<AppContext>
+    internal class CoreContextFactory : IDesignTimeDbContextFactory<AppContext>
     {
         public AppContext CreateDbContext(string[] args)
         {

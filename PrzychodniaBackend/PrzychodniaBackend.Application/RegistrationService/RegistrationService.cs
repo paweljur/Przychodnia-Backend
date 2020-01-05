@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PrzychodniaBackend.Application.RegistrationService.Dto;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories.PatientRepo;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.Application.RegistrationService
 {

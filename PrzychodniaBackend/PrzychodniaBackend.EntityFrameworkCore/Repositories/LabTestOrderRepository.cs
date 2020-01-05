@@ -2,10 +2,11 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 {
-    class LabTestOrderRepository : ILabTestOrderRepository
+    internal class LabTestOrderRepository : ILabTestOrderRepository
     {
         private readonly AppContext _context;
 

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
-namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
+namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 {
     internal class UserRepository : IUserRepository
     {

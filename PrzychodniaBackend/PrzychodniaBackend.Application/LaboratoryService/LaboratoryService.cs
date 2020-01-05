@@ -3,7 +3,7 @@ using System.Linq;
 using PrzychodniaBackend.Application.LaboratoryService.Dto;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.Application.LaboratoryService
 {

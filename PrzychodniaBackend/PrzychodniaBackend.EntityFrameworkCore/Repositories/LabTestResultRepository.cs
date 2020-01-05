@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 {
@@ -27,7 +28,8 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 
         public IEnumerable<LabTestResultEntity> GetAllByPatient(long patientId)
         {
-            return _context.LabTestResults.Include(r => r.Laborant).Include(r => r.LabTestOrder.Patient).Include(r => r.LabTestOrder.Doctor).Where(r => r.LabTestOrder.Patient.Id == patientId).ToList();
+            return _context.LabTestResults.Include(r => r.Laborant).Include(r => r.LabTestOrder.Patient)
+                .Include(r => r.LabTestOrder.Doctor).Where(r => r.LabTestOrder.Patient.Id == patientId).ToList();
         }
     }
 }

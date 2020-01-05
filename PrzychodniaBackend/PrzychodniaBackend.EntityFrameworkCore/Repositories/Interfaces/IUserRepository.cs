@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
-namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo
+namespace PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces
 {
     public interface IUserRepository
     {

@@ -5,7 +5,7 @@ using PrzychodniaBackend.Application.LaboratoryService.Dto;
 using PrzychodniaBackend.Application.RegistrationService.Dto;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories.AppointmentRepo;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.Application.DoctorService
 {

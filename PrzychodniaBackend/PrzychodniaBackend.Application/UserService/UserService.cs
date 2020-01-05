@@ -2,7 +2,7 @@
 using System.Linq;
 using PrzychodniaBackend.Application.UserService.Dto;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.Application.UserService
 {

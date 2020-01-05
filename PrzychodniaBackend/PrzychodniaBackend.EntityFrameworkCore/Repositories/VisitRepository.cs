@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
+using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 {
@@ -16,7 +17,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 
         public VisitEntity Add(AppointmentEntity appointment, string? description, string? diagnosis)
         {
-            var visit = new VisitEntity(appointment, description, diagnosis); 
+            var visit = new VisitEntity(appointment, description, diagnosis);
             _context.Visits.Add(visit);
             _context.SaveChanges();
 
@@ -25,12 +26,14 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
 
         public IEnumerable<VisitEntity> GetAllByDoctor(long doctorId)
         {
-            return _context.Visits.Include(v => v.Appointment.Patient).Include(v => v.Appointment.Doctor).Where(v => v.Appointment.Doctor.Id == doctorId).ToList();
+            return _context.Visits.Include(v => v.Appointment.Patient).Include(v => v.Appointment.Doctor)
+                .Where(v => v.Appointment.Doctor.Id == doctorId).ToList();
         }
 
         public IEnumerable<VisitEntity> GetAllByPatient(long patientId)
         {
-            return _context.Visits.Include(v => v.Appointment.Doctor).Include(v => v.Appointment.Patient).Where(v => v.Appointment.Patient.Id == patientId).ToList();
+            return _context.Visits.Include(v => v.Appointment.Doctor).Include(v => v.Appointment.Patient)
+                .Where(v => v.Appointment.Patient.Id == patientId).ToList();
         }
     }
 }
