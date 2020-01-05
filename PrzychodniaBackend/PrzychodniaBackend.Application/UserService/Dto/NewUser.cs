@@ -5,13 +5,13 @@ namespace PrzychodniaBackend.Application.UserService.Dto
 {
     public class NewUser : ValueObject
     {
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
 
-        public NewUser(string username, string password, string role, string? name, string? surname)
+        public NewUser(string username, string password, string role, string name, string surname)
         {
             Username = username;
             Password = password;

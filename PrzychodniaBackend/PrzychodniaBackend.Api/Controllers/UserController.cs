@@ -9,7 +9,7 @@ using PrzychodniaBackend.Application.UserService.Dto;
 
 namespace PrzychodniaBackend.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -22,39 +22,48 @@ namespace PrzychodniaBackend.Api.Controllers
             _jwtService = jwtService;
         }
 
-        [HttpGet()]
-        [Authorize]
+        [HttpGet]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(IEnumerable<UserInfo>), StatusCodes.Status200OK)]
         public IActionResult GetAllUsers()
         {
             return Ok(_userService.GetAllUsers());
         }
 
-        [HttpPost()]
-        [Authorize]
+        [HttpPost]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(UserInfo), StatusCodes.Status200OK)]
         public IActionResult RegisterNewUser(NewUserDto user)
         {
-            if (user.Username is null || user.Password is null || user.Role is null)
+            if (user.Username is null ||
+                user.Password is null ||
+                user.Name is null ||
+                user.Surname is null ||
+                user.Role is null)
             {
-                return BadRequest(new ApiError("No username, password or role"));
+                return BadRequest(new ApiError("Missing required fields"));
             }
 
-            return Ok(_userService.RegisterNewUser(new NewUser(user.Username, user.Password, user.Role, user.Name,
+            return Ok(_userService.RegisterNewUser(new NewUser(user.Username,
+                user.Password,
+                user.Role,
+                user.Name,
                 user.Surname)));
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(LoggedInUserDto), StatusCodes.Status200OK)]
         public IActionResult Login(LoginCredentialsDto credentials)
         {
             if (credentials.Username is null || credentials.Password is null)
             {
-                return BadRequest(new ApiError("No username or password provided"));
+                return BadRequest(new ApiError("Missing required fields"));
             }
 
             LoggedInUser? user = _userService.Login(new LoginCredentials(credentials.Username, credentials.Password));

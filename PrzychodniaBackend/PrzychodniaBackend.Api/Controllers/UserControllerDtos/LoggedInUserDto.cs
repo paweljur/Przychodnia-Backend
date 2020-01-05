@@ -5,13 +5,13 @@ namespace PrzychodniaBackend.Api.Controllers.UserControllerDtos
 {
     public class LoggedInUserDto : ValueObject
     {
-        public string Id { get; private set; }
-        public string? Name { get; private set; }
-        public string? Surname { get; private set; }
-        public string Role { get; private set; }
-        public string Token { get; private set; }
+        public string Id { get; }
+        public string Name { get;  }
+        public string Surname { get; }
+        public string Role { get; }
+        public string Token { get; }
 
-        public LoggedInUserDto(string id, string? name, string? surname, string role, string token)
+        public LoggedInUserDto(string id, string name, string surname, string role, string token)
         {
             Id = id;
             Name = name;
