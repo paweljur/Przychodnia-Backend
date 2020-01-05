@@ -36,7 +36,7 @@ namespace PrzychodniaBackend.Application.RegistrationService
         {
             PatientEntity? patient = _patientRepository.GetBy(newAppointment.PatientId);
             UserEntity? doctor = _userRepository.GetDoctorBy(newAppointment.DoctorId);
-            
+
             if (patient is null || doctor is null)
             {
                 throw new ApplicationException(

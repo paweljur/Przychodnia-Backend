@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using PrzychodniaBackend.Application.DoctorService.Dto;
-using PrzychodniaBackend.Application.Laboratory;
+using PrzychodniaBackend.Application.LaboratoryService.Dto;
 
-namespace PrzychodniaBackend.Application.DoctorService
+namespace PrzychodniaBackend.Application.DoctorService.Dto
 {
     public class PatientHistory
     {

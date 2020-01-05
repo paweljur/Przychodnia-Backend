@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PrzychodniaBackend.Application.LaboratoryService.Dto;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories.UserRepo;
 
-namespace PrzychodniaBackend.Application.Laboratory
+namespace PrzychodniaBackend.Application.LaboratoryService
 {
     internal class LaboratoryService : ILaboratoryService
     {

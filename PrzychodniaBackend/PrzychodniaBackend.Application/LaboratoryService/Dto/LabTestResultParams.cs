@@ -1,4 +1,4 @@
-﻿namespace PrzychodniaBackend.Application.Laboratory
+﻿namespace PrzychodniaBackend.Application.LaboratoryService.Dto
 {
     public class LabTestResultParams
     {

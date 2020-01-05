@@ -1,7 +1,7 @@
 ﻿using PrzychodniaBackend.Application.RegistrationService.Dto;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
-namespace PrzychodniaBackend.Application.Laboratory
+namespace PrzychodniaBackend.Application.LaboratoryService.Dto
 {
     public class LabTestResult
     {

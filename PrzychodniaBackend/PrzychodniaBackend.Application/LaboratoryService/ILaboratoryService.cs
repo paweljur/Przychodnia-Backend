@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using PrzychodniaBackend.Application.LaboratoryService.Dto;
 
-namespace PrzychodniaBackend.Application.Laboratory
+namespace PrzychodniaBackend.Application.LaboratoryService
 {
     public interface ILaboratoryService
     {

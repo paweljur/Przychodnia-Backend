@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Api.Controllers.LaboratoryControllerDtos;
-using PrzychodniaBackend.Application.Laboratory;
+using PrzychodniaBackend.Application.LaboratoryService;
+using PrzychodniaBackend.Application.LaboratoryService.Dto;
 
 namespace PrzychodniaBackend.Api.Controllers
 {

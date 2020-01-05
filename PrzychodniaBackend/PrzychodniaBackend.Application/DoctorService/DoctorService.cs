@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using PrzychodniaBackend.Application.DoctorService.Dto;
-using PrzychodniaBackend.Application.Laboratory;
+using PrzychodniaBackend.Application.LaboratoryService.Dto;
 using PrzychodniaBackend.Application.RegistrationService.Dto;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories;

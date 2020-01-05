@@ -7,6 +7,6 @@ namespace PrzychodniaBackend.Application.UserService
     {
         LoggedInUser? Login(LoginCredentials credentials);
         UserInfo RegisterNewUser(NewUser newUser);
-        IEnumerable<UserInfo>  GetAllUsers();
+        IEnumerable<UserInfo> GetAllUsers();
     }
 }
