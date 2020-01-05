@@ -2,7 +2,7 @@
 
 namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
 {
-    public partial class ChangedUserEntityName : Migration
+    public partial class InitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

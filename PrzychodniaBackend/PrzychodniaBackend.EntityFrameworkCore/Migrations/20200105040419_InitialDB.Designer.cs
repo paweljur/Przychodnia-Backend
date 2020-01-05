@@ -10,8 +10,8 @@ using PrzychodniaBackend.EntityFrameworkCore;
 namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20191205013837_Test")]
-    partial class Test
+    [Migration("20200105040419_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +65,9 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
                     b.Property<string>("DoctorsNote")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsExecuted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -94,9 +97,14 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
                     b.Property<long>("LabTestOrderId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("LaborantId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("LabTestOrderId");
+
+                    b.HasIndex("LaborantId");
 
                     b.ToTable("LabTestResults");
                 });
@@ -213,6 +221,10 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Migrations
                         .HasForeignKey("LabTestOrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PrzychodniaBackend.EntityFrameworkCore.Entities.UserEntity", "Laborant")
+                        .WithMany()
+                        .HasForeignKey("LaborantId");
                 });
 
             modelBuilder.Entity("PrzychodniaBackend.EntityFrameworkCore.Entities.VisitEntity", b =>
