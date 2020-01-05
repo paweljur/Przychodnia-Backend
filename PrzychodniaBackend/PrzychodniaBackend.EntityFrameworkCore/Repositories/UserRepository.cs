@@ -31,7 +31,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Repositories
             return _context.Users.SingleOrDefault(user => user.Username == username && user.Password == password);
         }
 
-        public UserEntity Add(string username, string password, string role, string? name, string? surname)
+        public UserEntity Add(string username, string password, string role, string name, string surname)
         {
             UserEntity newUser = new UserEntity(role, username, password, name, surname);
             _context.Users.Add(newUser);
