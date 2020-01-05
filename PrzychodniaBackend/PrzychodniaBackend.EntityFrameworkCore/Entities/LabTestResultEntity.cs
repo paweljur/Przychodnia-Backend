@@ -2,7 +2,7 @@
 {
     public class LabTestResultEntity
     {
-        public long Id { get; set; }
+        public long Id { get; private set; }
         public string? Description { get; set; }
         public LabTestOrderEntity LabTestOrder { get; set; }
         public UserEntity? Laborant { get; set; }
@@ -14,9 +14,10 @@
             Laborant = laborant;
         }
 
-        private LabTestResultEntity(string? description)
+        #nullable disable
+        // Required for proper ef core foreign key mapping
+        private LabTestResultEntity()
         {
-            Description = description;
         }
     }
 }

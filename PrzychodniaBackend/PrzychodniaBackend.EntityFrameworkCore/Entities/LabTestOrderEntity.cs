@@ -2,7 +2,7 @@
 {
     public class LabTestOrderEntity
     {
-        public long Id { get; set; }
+        public long Id { get; private set; }
         public string Name { get; set; }
         public string? DoctorsNote { get; set; }
         public PatientEntity Patient { get; set; }
@@ -18,10 +18,10 @@
             IsExecuted = false;
         }
 
-        private LabTestOrderEntity(string name, string? doctorsNote)
+        #nullable disable
+        // Required for proper ef core foreign key mapping
+        private LabTestOrderEntity()
         {
-            Name = name;
-            DoctorsNote = doctorsNote;
         }
     }
 }

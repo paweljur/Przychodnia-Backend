@@ -2,16 +2,22 @@
 {
     public class PatientEntity
     {
-        public long Id { get; set; }
+        public long Id { get; private set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string IdentityNumber { get; set; }
 
-        internal PatientEntity(string identityNumber, string? name, string? surname)
+        public PatientEntity(string identityNumber, string? name, string? surname)
         {
             IdentityNumber = identityNumber;
             Name = name;
             Surname = surname;
+        }
+
+        #nullable disable
+        // Required for proper ef core foreign key mapping
+        private PatientEntity()
+        {
         }
     }
 }

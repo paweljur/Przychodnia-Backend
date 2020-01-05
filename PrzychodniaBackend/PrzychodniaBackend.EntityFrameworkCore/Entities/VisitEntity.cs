@@ -2,22 +2,22 @@
 {
     public class VisitEntity
     {
-        public long Id { get; set; }
+        public long Id { get; private set; }
         public AppointmentEntity Appointment { get; set; }
         public string? Description { get; set; }
         public string? Diagnosis { get; set; }
         
-        internal VisitEntity(AppointmentEntity appointment, string? description, string? diagnosis)
+        public VisitEntity(AppointmentEntity appointment, string? description, string? diagnosis)
         {
             Appointment = appointment;
             Description = description;
             Diagnosis = diagnosis;
         }
 
-        private VisitEntity(string? description, string? diagnosis)
+        #nullable disable
+        // Required for proper ef core foreign key mapping
+        private VisitEntity()
         {
-            Description = description;
-            Diagnosis = diagnosis;
         }
     }
 }

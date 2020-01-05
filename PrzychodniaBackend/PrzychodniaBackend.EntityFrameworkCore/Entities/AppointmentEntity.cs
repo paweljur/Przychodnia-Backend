@@ -4,7 +4,7 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Entities
 {
     public class AppointmentEntity
     {
-        public long Id { get; set; }
+        public long Id { get; private set; }
         public PatientEntity Patient { get; set; }
         public UserEntity Doctor { get; set; }
         public DateTimeOffset AppointmentDate { get; set; }
@@ -22,9 +22,8 @@ namespace PrzychodniaBackend.EntityFrameworkCore.Entities
 
         #nullable disable
         // Required for proper ef core foreign key mapping
-        private AppointmentEntity(DateTimeOffset appointmentDate)
+        private AppointmentEntity()
         {
-            AppointmentDate = appointmentDate;
         }
     }
 }
