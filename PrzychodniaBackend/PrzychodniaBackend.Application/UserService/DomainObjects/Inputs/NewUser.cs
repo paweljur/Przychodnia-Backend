@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.UserService.Dto
+namespace PrzychodniaBackend.Application.UserService.DomainObjects.Inputs
 {
     public class NewUser : ValueObject
     {

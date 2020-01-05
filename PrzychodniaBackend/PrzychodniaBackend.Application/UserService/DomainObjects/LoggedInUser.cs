@@ -2,14 +2,14 @@
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.UserService.Dto
+namespace PrzychodniaBackend.Application.UserService.DomainObjects
 {
     public class LoggedInUser : ValueObject
     {
-        public long Id { get; private set; }
-        public string? Name { get; private set; }
-        public string? Surname { get; private set; }
-        public string Role { get; private set; }
+        public long Id { get; }
+        public string Name { get; }
+        public string Surname { get; }
+        public string Role { get; }
 
         internal LoggedInUser(UserEntity user)
         {

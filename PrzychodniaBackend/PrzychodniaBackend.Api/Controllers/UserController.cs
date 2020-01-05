@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Api.Authentication;
 using PrzychodniaBackend.Api.Controllers.UserControllerDtos;
 using PrzychodniaBackend.Application.UserService;
-using PrzychodniaBackend.Application.UserService.Dto;
+using PrzychodniaBackend.Application.UserService.DomainObjects;
+using PrzychodniaBackend.Application.UserService.DomainObjects.Inputs;
 
 namespace PrzychodniaBackend.Api.Controllers
 {

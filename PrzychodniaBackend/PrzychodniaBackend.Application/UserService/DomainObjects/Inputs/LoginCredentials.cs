@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.UserService.Dto
+namespace PrzychodniaBackend.Application.UserService.DomainObjects.Inputs
 {
     public class LoginCredentials : ValueObject
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Username { get; }
+        public string Password { get; }
 
         public LoginCredentials(string username, string password)
         {

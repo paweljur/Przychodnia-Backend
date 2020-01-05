@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using PrzychodniaBackend.Application.UserService.Dto;
+using PrzychodniaBackend.Application.UserService.DomainObjects;
+using PrzychodniaBackend.Application.UserService.DomainObjects.Inputs;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 

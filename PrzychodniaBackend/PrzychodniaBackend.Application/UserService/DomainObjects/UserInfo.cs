@@ -2,7 +2,7 @@
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.UserService.Dto
+namespace PrzychodniaBackend.Application.UserService.DomainObjects
 {
     public class UserInfo : ValueObject
     {
