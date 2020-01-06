@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Api.Controllers.DoctorControllerDtos;
 using PrzychodniaBackend.Application.DoctorService;
-using PrzychodniaBackend.Application.DoctorService.Dto;
+using PrzychodniaBackend.Application.DoctorService.DomainObjects;
+using PrzychodniaBackend.Application.DoctorService.DomainObjects.Inputs;
 using PrzychodniaBackend.Application.RegistrationService.DomainObjects;
 
 namespace PrzychodniaBackend.Api.Controllers
 {
-    [Route("api/doctor")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class DoctorController : ControllerBase
     {
@@ -23,9 +24,10 @@ namespace PrzychodniaBackend.Api.Controllers
             _doctorsService = doctorsService;
         }
 
-        [HttpGet("getAllAppointments")]
+        [HttpGet]
         [Authorize(Roles = "admin,doctor")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(IEnumerable<Appointment>), StatusCodes.Status200OK)]
         public IActionResult GetAllAppointments()
         {
@@ -33,9 +35,10 @@ namespace PrzychodniaBackend.Api.Controllers
                 Convert.ToInt64(User.FindFirst(ClaimTypes.NameIdentifier).Value)));
         }
 
-        [HttpPatch("cancelAppointment")]
+        [HttpPatch]
         [Authorize(Roles = "admin,doctor")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         public IActionResult CancelAppointment(long appointmentId)
         {
@@ -43,30 +46,40 @@ namespace PrzychodniaBackend.Api.Controllers
             return NoContent();
         }
 
-        [HttpPost("finishAppointment")]
+        [HttpPost]
         [Authorize(Roles = "admin,doctor")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         public IActionResult FinishAppointment(VisitDetailsDto visitDetails)
         {
-            _doctorsService.FinishAppointment(new VisitDetails(visitDetails.AppointmentId, visitDetails.Description,
+            if (visitDetails.LabTestOrders is {} && visitDetails.LabTestOrders.Any(o => o.Name is null))
+            {
+                return BadRequest(new ApiError("Lab test needs a name"));
+            }
+
+            _doctorsService.FinishAppointment(new VisitDetails(visitDetails.AppointmentId,
+                visitDetails.Description,
                 visitDetails.Diagnosis,
-                visitDetails.LabTestOrders.Select(o => new LabTestOrder(o.Name, o.DoctorsNote))));
+                visitDetails.LabTestOrders.Select(o => new LabTestOrder(o.Name!, o.DoctorsNote!))));
             return NoContent();
         }
 
-        [HttpGet("getPastVisits")]
+        [HttpGet]
         [Authorize(Roles = "admin,doctor")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(IEnumerable<Visit>), StatusCodes.Status200OK)]
         public IActionResult GetPastVisits()
         {
             return Ok(_doctorsService.GetPastVisits(Convert.ToInt64(User.FindFirst(ClaimTypes.NameIdentifier).Value)));
         }
 
-        [HttpGet("getPatientHistory")]
+        [HttpGet]
         [Authorize(Roles = "admin,doctor")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(PatientHistory), StatusCodes.Status200OK)]
         public IActionResult GetPatientHistory(long patientId)
         {

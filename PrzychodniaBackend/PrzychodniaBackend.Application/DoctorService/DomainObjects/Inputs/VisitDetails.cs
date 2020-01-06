@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.DoctorService.Dto
+namespace PrzychodniaBackend.Application.DoctorService.DomainObjects.Inputs
 {
-    public class VisitDetails
+    public class VisitDetails : ValueObject
     {
         public long AppointmentId { get; set; }
         public string? Description { get; set; }
@@ -15,6 +16,14 @@ namespace PrzychodniaBackend.Application.DoctorService.Dto
             Description = description;
             Diagnosis = diagnosis;
             LabTestOrders = labTestOrders;
+        }
+
+        protected override IEnumerable<object?> GetAtomicValues()
+        {
+            yield return AppointmentId;
+            yield return Description;
+            yield return Diagnosis;
+            yield return LabTestOrders;
         }
     }
 }

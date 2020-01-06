@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using PrzychodniaBackend.Application.DoctorService.Dto;
+using PrzychodniaBackend.Application.DoctorService.DomainObjects;
+using PrzychodniaBackend.Application.DoctorService.DomainObjects.Inputs;
 using PrzychodniaBackend.Application.LaboratoryService.Dto;
-using PrzychodniaBackend.Application.RegistrationService.Dto;
+using PrzychodniaBackend.Application.RegistrationService.DomainObjects;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.Application.DoctorService
@@ -16,7 +17,10 @@ namespace PrzychodniaBackend.Application.DoctorService
         private readonly ILabTestOrderRepository _labTestOrderRepository;
         private readonly ILabTestResultRepository _labTestResultRepository;
 
-        public DoctorService(IAppointmentRepository appointmentRepository, IVisitRepository visitRepository, ILabTestOrderRepository labTestOrderRepository, ILabTestResultRepository labTestResultRepository)
+        public DoctorService(IAppointmentRepository appointmentRepository,
+            IVisitRepository visitRepository,
+            ILabTestOrderRepository labTestOrderRepository,
+            ILabTestResultRepository labTestResultRepository)
         {
             _appointmentRepository = appointmentRepository;
             _visitRepository = visitRepository;
@@ -32,13 +36,28 @@ namespace PrzychodniaBackend.Application.DoctorService
         public void CancelAppointment(long appointmentId)
         {
             AppointmentEntity? appointment = _appointmentRepository.Get(appointmentId);
+            
+            if (appointment is null)
+            {
+                throw new ApplicationException(
+                    "Appointment was not found");
+            }
+
             appointment.IsCancelled = true;
+
             _appointmentRepository.Save();
         }
 
         public void FinishAppointment(VisitDetails visitDetails)
         {
             AppointmentEntity? appointment = _appointmentRepository.Get(visitDetails.AppointmentId);
+
+            if (appointment is null)
+            {
+                throw new ApplicationException(
+                    "Appointment was not found");
+            }
+
             appointment.IsAttended = true;
             _visitRepository.Add(appointment, visitDetails.Description, visitDetails.Diagnosis);
             _labTestOrderRepository.Add(visitDetails.LabTestOrders.Select(o =>

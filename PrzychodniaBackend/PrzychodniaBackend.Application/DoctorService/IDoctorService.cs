@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using PrzychodniaBackend.Application.DoctorService.Dto;
+using PrzychodniaBackend.Application.DoctorService.DomainObjects;
+using PrzychodniaBackend.Application.DoctorService.DomainObjects.Inputs;
 using PrzychodniaBackend.Application.RegistrationService.DomainObjects;
 
 namespace PrzychodniaBackend.Application.DoctorService
