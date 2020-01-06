@@ -2,13 +2,13 @@
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.RegistrationService.Dto
+namespace PrzychodniaBackend.Application.RegistrationService.DomainObjects
 {
     public class Doctor : ValueObject
     {
-        public long Id { get; set; }
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
+        public long Id { get; }
+        public string? Name { get; }
+        public string? Surname { get; }
 
         internal Doctor(UserEntity user)
         {

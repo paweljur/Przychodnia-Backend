@@ -6,11 +6,11 @@ namespace PrzychodniaBackend.Application.UserService.DomainObjects
 {
     public class UserInfo : ValueObject
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Username { get; set; }
-        public string Role { get; set; }
+        public long Id { get; }
+        public string Name { get; }
+        public string Surname { get; }
+        public string Username { get; }
+        public string Role { get; }
 
         internal UserInfo(UserEntity user)
         {

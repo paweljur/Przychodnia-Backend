@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PrzychodniaBackend.Application.RegistrationService.Dto;
+using PrzychodniaBackend.Application.RegistrationService.DomainObjects;
+using PrzychodniaBackend.Application.RegistrationService.DomainObjects.Inputs;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
@@ -20,7 +21,7 @@ namespace PrzychodniaBackend.Application.RegistrationService
             _appointmentRepository = appointmentRepository;
         }
 
-        public Patient AddNewPatient(NewPatient patient)
+        public Patient RegisterPatient(NewPatient patient)
         {
             return new Patient(_patientRepository.Add(patient.IdentityNumber, patient.Name, patient.Surname));
         }

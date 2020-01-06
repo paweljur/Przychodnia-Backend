@@ -4,11 +4,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Api.Controllers.RegistrationControllerDtos;
 using PrzychodniaBackend.Application.RegistrationService;
-using PrzychodniaBackend.Application.RegistrationService.Dto;
+using PrzychodniaBackend.Application.RegistrationService.DomainObjects;
+using PrzychodniaBackend.Application.RegistrationService.DomainObjects.Inputs;
 
 namespace PrzychodniaBackend.Api.Controllers
 {
-    [Route("api/registration")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class RegistrationController : ControllerBase
     {
@@ -19,18 +20,20 @@ namespace PrzychodniaBackend.Api.Controllers
             _registrationService = registrationService;
         }
 
-        [HttpGet("appointment")]
+        [HttpGet]
         [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(IEnumerable<Appointment>), StatusCodes.Status200OK)]
         public IActionResult GetAllAppointments()
         {
             return Ok(_registrationService.GetAllAppointments());
         }
 
-        [HttpPost("appointment")]
+        [HttpPost]
         [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         public IActionResult MakeAppointment(NewAppointmentDto appointment)
@@ -45,18 +48,20 @@ namespace PrzychodniaBackend.Api.Controllers
             return NoContent();
         }
 
-        [HttpGet("patients")]
+        [HttpGet]
         [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(IEnumerable<Patient>), StatusCodes.Status200OK)]
         public IActionResult GetAllPatients()
         {
             return Ok(_registrationService.GetAllPatients());
         }
 
-        [HttpGet("doctors")]
+        [HttpGet]
         [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(IEnumerable<Doctor>), StatusCodes.Status200OK)]
         public IActionResult GetAllDoctors()
         {
@@ -66,9 +71,10 @@ namespace PrzychodniaBackend.Api.Controllers
         [HttpPost]
         [Authorize(Roles = "admin,registrant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Patient), StatusCodes.Status200OK)]
-        public IActionResult AddNewPatient(NewPatientDto patient)
+        public IActionResult RegisterPatient(NewPatientDto patient)
         {
             if (patient.IdentityNumber is null)
             {
@@ -76,7 +82,7 @@ namespace PrzychodniaBackend.Api.Controllers
             }
 
             Patient createdPatient =
-                _registrationService.AddNewPatient(
+                _registrationService.RegisterPatient(
                     new NewPatient(patient.IdentityNumber, patient.Name, patient.Surname));
 
             return Ok(createdPatient);

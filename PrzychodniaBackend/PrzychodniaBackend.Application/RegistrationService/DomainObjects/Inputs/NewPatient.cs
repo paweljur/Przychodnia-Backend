@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.RegistrationService.Dto
+namespace PrzychodniaBackend.Application.RegistrationService.DomainObjects.Inputs
 {
     public class NewPatient : ValueObject
     {
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
-        public string IdentityNumber { get; set; }
+        public string? Name { get; }
+        public string? Surname { get; }
+        public string IdentityNumber { get; }
 
         public NewPatient(string identityNumber, string? name, string? surname)
         {

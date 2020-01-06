@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.RegistrationService.Dto
+namespace PrzychodniaBackend.Application.RegistrationService.DomainObjects
 {
     public class Appointment : ValueObject
     {
-        public long Id { get; private set; }
-        public Patient Patient { get; private set; }
-        public Doctor Doctor { get; private set; }
-        public DateTimeOffset AppointmentDate { get; private set; }
+        public long Id { get; }
+        public Patient Patient { get; }
+        public Doctor Doctor { get; }
+        public DateTimeOffset AppointmentDate { get; }
 
         internal Appointment(AppointmentEntity appointment)
         {

@@ -1,4 +1,4 @@
-﻿using PrzychodniaBackend.Application.RegistrationService.Dto;
+﻿using PrzychodniaBackend.Application.RegistrationService.DomainObjects;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
 namespace PrzychodniaBackend.Application.DoctorService.Dto

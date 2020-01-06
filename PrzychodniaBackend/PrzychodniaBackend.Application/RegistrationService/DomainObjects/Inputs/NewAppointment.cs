@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.RegistrationService.Dto
+namespace PrzychodniaBackend.Application.RegistrationService.DomainObjects.Inputs
 {
     public class NewAppointment : ValueObject
     {
-        public long PatientId { get; set; }
-        public long DoctorId { get; set; }
-        public DateTimeOffset AppointmentDate { get; set; }
+        public long PatientId { get; }
+        public long DoctorId { get; }
+        public DateTimeOffset AppointmentDate { get; }
 
         public NewAppointment(long patientId, long doctorId, DateTimeOffset appointmentDate)
         {

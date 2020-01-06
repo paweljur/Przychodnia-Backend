@@ -2,7 +2,7 @@
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.Shared;
 
-namespace PrzychodniaBackend.Application.RegistrationService.Dto
+namespace PrzychodniaBackend.Application.RegistrationService.DomainObjects
 {
     public class Patient : ValueObject
     {

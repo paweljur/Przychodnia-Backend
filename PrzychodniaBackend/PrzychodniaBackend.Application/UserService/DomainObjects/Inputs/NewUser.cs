@@ -5,11 +5,11 @@ namespace PrzychodniaBackend.Application.UserService.DomainObjects.Inputs
 {
     public class NewUser : ValueObject
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
+        public string Name { get; }
+        public string Surname { get; }
+        public string Username { get; }
+        public string Password { get; }
+        public string Role { get; }
 
         public NewUser(string username, string password, string role, string name, string surname)
         {

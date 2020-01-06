@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Api.Controllers.DoctorControllerDtos;
 using PrzychodniaBackend.Application.DoctorService;
 using PrzychodniaBackend.Application.DoctorService.Dto;
-using PrzychodniaBackend.Application.RegistrationService.Dto;
+using PrzychodniaBackend.Application.RegistrationService.DomainObjects;
 
 namespace PrzychodniaBackend.Api.Controllers
 {
