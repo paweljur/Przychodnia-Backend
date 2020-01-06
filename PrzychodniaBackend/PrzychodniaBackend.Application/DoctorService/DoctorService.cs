@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PrzychodniaBackend.Application.DoctorService.DomainObjects;
 using PrzychodniaBackend.Application.DoctorService.DomainObjects.Inputs;
-using PrzychodniaBackend.Application.LaboratoryService.Dto;
+using PrzychodniaBackend.Application.LaboratoryService.DomainObjects;
 using PrzychodniaBackend.Application.RegistrationService.DomainObjects;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;

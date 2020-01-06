@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using PrzychodniaBackend.Application.LaboratoryService.Dto;
+using PrzychodniaBackend.Application.LaboratoryService.DomainObjects;
 using PrzychodniaBackend.Shared;
 
 namespace PrzychodniaBackend.Application.DoctorService.DomainObjects

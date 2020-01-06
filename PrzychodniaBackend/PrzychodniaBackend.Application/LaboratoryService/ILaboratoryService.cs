@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using PrzychodniaBackend.Application.LaboratoryService.Dto;
+using PrzychodniaBackend.Application.LaboratoryService.DomainObjects;
+using PrzychodniaBackend.Application.LaboratoryService.DomainObjects.Inputs;
 
 namespace PrzychodniaBackend.Application.LaboratoryService
 {
@@ -7,7 +8,7 @@ namespace PrzychodniaBackend.Application.LaboratoryService
     {
         IEnumerable<LabTestOrder> GetAllLabTestOrders();
         LabTestOrder GetLabTestOrder(long id);
-        LabTestResult FinishLabTest(LabTestResultParams labTestResultParams);
+        LabTestResult FinishLabTest(NewLabTestResult newLabTestResult);
         IEnumerable<LabTestResult> GetAllLabResults();
     }
 }

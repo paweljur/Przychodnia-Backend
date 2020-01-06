@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using PrzychodniaBackend.Application.LaboratoryService.Dto;
+using PrzychodniaBackend.Application.LaboratoryService.DomainObjects;
+using PrzychodniaBackend.Application.LaboratoryService.DomainObjects.Inputs;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
-using PrzychodniaBackend.EntityFrameworkCore.Repositories;
 using PrzychodniaBackend.EntityFrameworkCore.Repositories.Interfaces;
 
 namespace PrzychodniaBackend.Application.LaboratoryService
@@ -31,12 +31,13 @@ namespace PrzychodniaBackend.Application.LaboratoryService
             return new LabTestOrder(_labTestOrderRepository.Get(id));
         }
 
-        public LabTestResult FinishLabTest(LabTestResultParams labTestResultParams)
+        public LabTestResult FinishLabTest(NewLabTestResult newLabTestResult)
         {
-            LabTestOrderEntity order = _labTestOrderRepository.Get(labTestResultParams.LabTestOrderId);
-            UserEntity laborant = _userRepository.GetLaborantBy(labTestResultParams.LaborantId);
+            LabTestOrderEntity order = _labTestOrderRepository.Get(newLabTestResult.LabTestOrderId);
+            UserEntity laborant = _userRepository.GetLaborantBy(newLabTestResult.LaborantId);
+            
             order.IsExecuted = true;
-            var result = new LabTestResultEntity(labTestResultParams.Description, order, laborant);
+            var result = new LabTestResultEntity(newLabTestResult.Description, order, laborant);
             _labTestResultRepository.Add(result);
 
             return new LabTestResult(result);

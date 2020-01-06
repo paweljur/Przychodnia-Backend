@@ -1,12 +1,12 @@
-﻿namespace PrzychodniaBackend.Application.LaboratoryService.Dto
+﻿namespace PrzychodniaBackend.Application.LaboratoryService.DomainObjects.Inputs
 {
-    public class LabTestResultParams
+    public class NewLabTestResult
     {
         public long LabTestOrderId { get; set; }
         public string? Description { get; set; }
         public long LaborantId { get; set; }
 
-        public LabTestResultParams(long labTestOrderId, string? description, long laborantId)
+        public NewLabTestResult(long labTestOrderId, string? description, long laborantId)
         {
             LabTestOrderId = labTestOrderId;
             Description = description;

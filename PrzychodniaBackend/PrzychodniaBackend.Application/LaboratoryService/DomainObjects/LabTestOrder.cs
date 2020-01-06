@@ -1,7 +1,7 @@
 ﻿using PrzychodniaBackend.Application.RegistrationService.DomainObjects;
 using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
-namespace PrzychodniaBackend.Application.LaboratoryService.Dto
+namespace PrzychodniaBackend.Application.LaboratoryService.DomainObjects
 {
     public class LabTestOrder
     {

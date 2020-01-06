@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrzychodniaBackend.Api.Controllers.LaboratoryControllerDtos;
 using PrzychodniaBackend.Application.LaboratoryService;
-using PrzychodniaBackend.Application.LaboratoryService.Dto;
+using PrzychodniaBackend.Application.LaboratoryService.DomainObjects;
+using PrzychodniaBackend.Application.LaboratoryService.DomainObjects.Inputs;
 
 namespace PrzychodniaBackend.Api.Controllers
 {
-    [Route("api/laboratory")]
+    [Route("api/[controller]/[action]")]
     public class LaboratoryController : ControllerBase
     {
         private readonly ILaboratoryService _laboratoryService;
@@ -20,37 +21,41 @@ namespace PrzychodniaBackend.Api.Controllers
             _laboratoryService = laboratoryService;
         }
 
-        [HttpGet("getAllLabTestOrders")]
+        [HttpGet]
         [Authorize(Roles = "admin,laborant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(IEnumerable<LabTestOrder>), StatusCodes.Status200OK)]
         public IActionResult GetAllLabTestOrders()
         {
             return Ok(_laboratoryService.GetAllLabTestOrders());
         }
 
-        [HttpGet("getLabTestOrder")]
+        [HttpGet]
         [Authorize(Roles = "admin,laborant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(LabTestOrder), StatusCodes.Status200OK)]
         public IActionResult GetLabTestOrder(long id)
         {
             return Ok(_laboratoryService.GetLabTestOrder(id));
         }
 
-        [HttpPost("finishLabTest")]
+        [HttpPost]
         [Authorize(Roles = "admin,laborant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(LabTestResult), StatusCodes.Status200OK)]
         public IActionResult FinishLabTest(LabTestResultDto result)
         {
-            return Ok(_laboratoryService.FinishLabTest(new LabTestResultParams(result.LabTestOrderId,
+            return Ok(_laboratoryService.FinishLabTest(new NewLabTestResult(result.LabTestOrderId,
                 result.Description, Convert.ToInt64(User.FindFirst(ClaimTypes.NameIdentifier).Value))));
         }
 
-        [HttpPost("getAllLabResult")]
+        [HttpPost]
         [Authorize(Roles = "admin,laborant")]
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(IEnumerable<LabTestResult>), StatusCodes.Status200OK)]
         public IActionResult GetAllLabResult()
         {

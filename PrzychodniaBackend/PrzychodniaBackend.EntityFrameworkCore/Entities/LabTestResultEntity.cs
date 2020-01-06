@@ -5,7 +5,7 @@
         public long Id { get; private set; }
         public string? Description { get; set; }
         public LabTestOrderEntity LabTestOrder { get; set; }
-        public UserEntity? Laborant { get; set; }
+        public UserEntity Laborant { get; set; }
 
         public LabTestResultEntity(string? description, LabTestOrderEntity labTestOrder, UserEntity laborant)
         {
