@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using PrzychodniaBackend.EntityFrameworkCore.Entities;
-using PrzychodniaBackend.Shared;
+﻿using PrzychodniaBackend.EntityFrameworkCore.Entities;
 
 namespace PrzychodniaBackend.Application.RegistrationService.DomainObjects
 {
-    public class Patient : ValueObject
+    public class Patient
     {
         public long Id { get; }
         public string? Name { get; }
@@ -17,14 +15,6 @@ namespace PrzychodniaBackend.Application.RegistrationService.DomainObjects
             Name = patient.Name;
             Surname = patient.Surname;
             IdentityNumber = patient.IdentityNumber;
-        }
-
-        protected override IEnumerable<object?> GetAtomicValues()
-        {
-            yield return Id;
-            yield return Name;
-            yield return Surname;
-            yield return IdentityNumber;
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using PrzychodniaBackend.Shared;
-
-namespace PrzychodniaBackend.Application.UserService.DomainObjects.Inputs
+﻿namespace PrzychodniaBackend.Application.UserService.DomainObjects.Inputs
 {
-    public class NewUser : ValueObject
+    public class NewUser
     {
         public string Name { get; }
         public string Surname { get; }
@@ -18,15 +15,6 @@ namespace PrzychodniaBackend.Application.UserService.DomainObjects.Inputs
             Role = role;
             Surname = surname;
             Name = name;
-        }
-
-        protected override IEnumerable<object?> GetAtomicValues()
-        {
-            yield return Username;
-            yield return Password;
-            yield return Role;
-            yield return Surname;
-            yield return Name;
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using PrzychodniaBackend.Shared;
-
-namespace PrzychodniaBackend.Api.Controllers.UserControllerDtos
+﻿namespace PrzychodniaBackend.Api.Controllers.UserControllerDtos
 {
-    public class LoggedInUserDto : ValueObject
+    public class LoggedInUserDto
     {
         public string Id { get; }
         public string Name { get;  }
@@ -18,15 +15,6 @@ namespace PrzychodniaBackend.Api.Controllers.UserControllerDtos
             Surname = surname;
             Role = role;
             Token = token;
-        }
-
-        protected override IEnumerable<object?> GetAtomicValues()
-        {
-            yield return Id;
-            yield return Name;
-            yield return Surname;
-            yield return Role;
-            yield return Token;
         }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using PrzychodniaBackend.Shared;
 
 namespace PrzychodniaBackend.Application.RegistrationService.DomainObjects.Inputs
 {
-    public class NewAppointment : ValueObject
+    public class NewAppointment
     {
         public long PatientId { get; }
         public long DoctorId { get; }
@@ -15,13 +13,6 @@ namespace PrzychodniaBackend.Application.RegistrationService.DomainObjects.Input
             PatientId = patientId;
             DoctorId = doctorId;
             AppointmentDate = appointmentDate;
-        }
-
-        protected override IEnumerable<object?> GetAtomicValues()
-        {
-            yield return PatientId;
-            yield return DoctorId;
-            yield return AppointmentDate;
         }
     }
 }

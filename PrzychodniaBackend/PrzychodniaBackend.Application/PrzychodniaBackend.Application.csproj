@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PrzychodniaBackend.EntityFrameworkCore\PrzychodniaBackend.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\PrzychodniaBackend.Shared\PrzychodniaBackend.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

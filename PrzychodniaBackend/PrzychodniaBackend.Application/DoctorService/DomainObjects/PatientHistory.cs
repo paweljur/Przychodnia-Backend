@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using PrzychodniaBackend.Application.LaboratoryService.DomainObjects;
-using PrzychodniaBackend.Shared;
 
 namespace PrzychodniaBackend.Application.DoctorService.DomainObjects
 {
-    public class PatientHistory : ValueObject
+    public class PatientHistory
     {
         public IEnumerable<Visit> Visits { get; set; }
         public IEnumerable<LabTestResult> TestResults { get; set; }
@@ -13,12 +12,6 @@ namespace PrzychodniaBackend.Application.DoctorService.DomainObjects
         {
             Visits = visits;
             TestResults = testResults;
-        }
-
-        protected override IEnumerable<object?> GetAtomicValues()
-        {
-            yield return Visits;
-            yield return TestResults;
         }
     }
 }

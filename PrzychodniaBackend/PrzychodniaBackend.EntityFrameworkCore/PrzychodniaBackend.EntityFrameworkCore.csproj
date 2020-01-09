@@ -17,8 +17,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PrzychodniaBackend.Shared\PrzychodniaBackend.Shared.csproj" />
-  </ItemGroup>
-
 </Project>
