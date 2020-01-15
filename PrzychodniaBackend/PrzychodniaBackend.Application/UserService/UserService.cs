@@ -19,7 +19,7 @@ namespace PrzychodniaBackend.Application.UserService
         public LoggedInUser? Login(LoginCredentials credentials)
         {
             UserEntity? user = _userRepository.GetBy(credentials.Username, credentials.Password);
-            return user is { } ? new LoggedInUser(user) : null;
+            return user is null ? null : new LoggedInUser(user);
         }
 
         public UserInfo RegisterNewUser(NewUser user)
